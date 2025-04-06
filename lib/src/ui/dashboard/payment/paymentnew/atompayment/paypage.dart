@@ -584,6 +584,7 @@ import 'package:flutter/material.dart';
 import 'package:cryptography/cryptography.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:http/http.dart' as http;
+import 'package:iroots/bloc/blocserver/serverhelper.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:encrypt/encrypt.dart' as encryptw;
 
@@ -1543,7 +1544,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   Future<void> _callCaptureResponseApi(String status) async {
     try {
       final url = Uri.parse(
-          'https://stmarysapi.lumensof.in/api/Paymet/api/payment/capture-response');
+          '${ServerHelper.baseUrl}/Paymet/api/payment/capture-response');
 
       // Prepare the request body
       final requestBody = {

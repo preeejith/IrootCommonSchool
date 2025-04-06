@@ -1,16 +1,44 @@
 /// St. Mary's Higher Sec School
+//stmary_
+//stpaul_
+//stthomas_
+//stmarywill_
+//nirmala_
 library;
+
+import 'package:iroots/bloc/blocserver/serverhelper.dart';
 
 const String baseUrlName = 'https://stmarysapi.lumensof.in/api/';
 const String baseUrlName2 = 'https://stmarysapi.lumensof.in/api';
 const String appName = "ST.MARY'S HIGHER SECONDARY";
 const String appBundle = "com.irootsm";
-// const String appIcon = "assets/images/logo.jpeg";
-const String appIcon = "assets/new/newlogo.png";
+const String myschoolauth = "stmary_";
+String _reqEncKey = myschoolauth == "stmary_"
+    ? "F7F04ECA0B0A8C00C14620750BF4FCDD"
+    : "F7F04ECA0B0A8C00C14620750BF4FCDD";
 
-const String slider1 = "assets/images/slider1.png";
-const String slider2 = "assets/images/slider2.png";
-const String slider3 = "assets/images/slider3.png";
+// const String appIcon = "assets/images/logo.jpeg";
+const String appIcon = myschoolauth == "stmary_"
+    ? "assets/new/newlogo.png"
+    : myschoolauth == "stmary_"
+        ? "assets/new/stpaulicon.jpeg"
+        : "assets/new/newlogo.png";
+
+const String slider1 = myschoolauth == "stmary_"
+    ? "assets/images/slider1.png"
+    : myschoolauth == "stpaul_"
+        ? "assets/images/slider10.png"
+        : "assets/images/slider1.png";
+const String slider2 = myschoolauth == "stmary_"
+    ? "assets/images/slider2.png"
+    : myschoolauth == "stpaul_"
+        ? "assets/images/slider11.png"
+        : "assets/images/slider2.png";
+const String slider3 = myschoolauth == "stmary_"
+    ? "assets/images/slider3.png"
+    : myschoolauth == "stpaul_"
+        ? "assets/images/slider12.png"
+        : "assets/images/slider3.png";
 const String appKey = "AIzaSyAnvBYom8Fzcgpfq4L37FWS-Ef3_hhrDDs";
 const String appId = '1:487924006736:android:109a7a70f7808f7670f655';
 const String messagingSenderId = "487924006736";

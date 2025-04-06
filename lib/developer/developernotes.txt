@@ -7,3 +7,24 @@
 ###chnage the Name Every where
 ##chnage app icon
 ##
+##url
+## stmarys####
+# urls  -- https://stmarysapi.lumensof.in/api/  (replace it)
+#package name  -- com.irootsm (replace it)
+# logos
+#slider 
+#const String myschoolauth = "stmary_"; chnage in the app_data page
+#splash screen
+#appicon
+${ServerHelper.baseUrl} common check url 
+#  //payment in serverhelper
+
+##stpaul####
+# urls  -- https://stpaulapi.lumensof.in/api/  (replace it)
+#package name  -- com.irootsp (replace it)
+# logos
+#slider 
+#const String myschoolauth = "stmary_"; chnage in the app_data page
+#splash screen
+#appicon
+${ServerHelper.baseUrl} common check url 

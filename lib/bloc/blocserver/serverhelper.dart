@@ -7,6 +7,21 @@ import 'package:iroots/bloc/bloclocalstorage/prefmanager.dart';
 
 //meserverhelper
 class ServerHelper {
+  //stmary_
+  //stpaul_
+  //stthomas_
+  //stmarywill_
+  //nirmala_
+  //payment
+  //stmarypayment
+  static String encrptypay = "F7F04ECA0B0A8C00C14620750BF4FCDD";
+  static String decrptypay = "E074A2C130FC4FF676932DB3F8ABAC9F";
+  static String merchentId = "628856";
+  static String hashrequeskey = "de51c9a388700add01";
+  static String merchPass = "62915a61";
+  //payment
+  static String myschoolauth = "stmary_";
+
   static String baseUrlOhyes = "https://stmarysapi.lumensof.in/api/";
   // static const baseUrlOhyes =
 

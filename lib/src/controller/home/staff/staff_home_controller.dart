@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:intl/intl.dart';
+import 'package:iroots/bloc/blocserver/serverhelper.dart';
 import 'package:iroots/common/app_data.dart';
 import 'package:iroots/src/modal/attendance/studentAttendanceModalClass.dart';
 import 'package:iroots/src/modal/dashboardModalClass.dart';
@@ -303,7 +304,7 @@ class StaffHomeController extends GetxController {
     // staffClassmodel
 
     final String url =
-        'https://stmarysapi.lumensof.in/api/Exam/GetClassList?staff_Id=$staffId';
+        '${ServerHelper.baseUrl}Exam/GetClassList?staff_Id=$staffId';
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -327,9 +328,9 @@ class StaffHomeController extends GetxController {
     // staffClassmodel
 //edit2
     final String url =
-        'https://stmarysapi.lumensof.in/api/Exam/GetSectionList?staffId=$staffId&classId=$classId';
+        '${ServerHelper.baseUrl}Exam/GetSectionList?staffId=$staffId&classId=$classId';
     // https: //stmarysapi.lumensof.in/api/Exam/GetSectionList?staffId=105&classId=615
-    log('https://stmarysapi.lumensof.in/api/Exam/GetSectionList?staffId=$staffId&classId=$classId');
+    log('${ServerHelper.baseUrl}Exam/GetSectionList?staffId=$staffId&classId=$classId');
     try {
       final response = await http.get(
         Uri.parse(url),

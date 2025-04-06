@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:iroots/bloc/bloclocalstorage/prefmanager.dart';
+import 'package:iroots/bloc/blocserver/serverhelper.dart';
 import 'package:iroots/common/app_data.dart';
 import 'package:iroots/src/controller/dashboard/dashBoard_controller.dart';
 import 'package:iroots/src/controller/home/staff/staff_home_controller.dart';
@@ -61,8 +62,7 @@ class ViewAttendanceController extends GetxController {
   }
 
   Future<void> fetchBatchData() async {
-    const String apiUrl =
-        "https://stmarysapi.lumensof.in/api/Exam/GetBatchDropList";
+    const String apiUrl = "${ServerHelper.baseUrl}Exam/GetBatchDropList";
 
     try {
       final response = await http.get(Uri.parse(apiUrl));

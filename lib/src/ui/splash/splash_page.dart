@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iroots/bloc/blocserver/serverhelper.dart';
 import 'package:iroots/common/app_data.dart';
 import 'package:iroots/src/controller/splash/splash_controller.dart';
 import 'package:iroots/src/utility/const.dart';
@@ -14,12 +15,24 @@ class SplashPage extends StatelessWidget {
       builder: (logic) => Scaffold(
         backgroundColor: ConstClass.themeColor,
         body: Center(
-          child: Image.asset(
-            appIcon,
-            width: 200,
-            height: 200,
-            // color: Colors.white,
-          ),
+          child: ServerHelper.myschoolauth == "stmary_"
+              ? Image.asset(
+                  appIcon,
+                  width: 200,
+                  height: 200,
+                  // color: Colors.white,
+                )
+              : ServerHelper.myschoolauth == "stpaul_"
+                  ? CircleAvatar(
+                      radius: 80,
+                      backgroundImage: AssetImage(appIcon),
+                    )
+                  : Image.asset(
+                      appIcon,
+                      width: 200,
+                      height: 200,
+                      // color: Colors.white,
+                    ),
         ),
       ),
     );

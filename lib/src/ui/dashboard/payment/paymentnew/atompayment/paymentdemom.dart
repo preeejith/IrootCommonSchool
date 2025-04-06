@@ -8,23 +8,20 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:iroots/bloc/blocmodels/paymentinputresponsemodel.dart';
+import 'package:iroots/bloc/blocserver/serverhelper.dart';
 import 'package:iroots/bloc/mainbloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// const req_EncKey = 'A4476C2062FFA58980DC8F79EB6A799E';
-const req_EncKey = 'F7F04ECA0B0A8C00C14620750BF4FCDD';
-const req_Salt = 'F7F04ECA0B0A8C00C14620750BF4FCDD';
-// const req_Salt = 'A4476C2062FFA58980DC8F79EB6A799E';
-// const res_DecKey = '75AEF0FA1B94B3C10D4F5B268F757F11';
-const res_DecKey = 'E074A2C130FC4FF676932DB3F8ABAC9F';
+var req_EncKey = ServerHelper.encrptypay;
+var req_Salt = ServerHelper.encrptypay;
 
-// const res_Salt = '75AEF0FA1B94B3C10D4F5B268F757F11';
-const res_Salt = 'E074A2C130FC4FF676932DB3F8ABAC9F';
-const resHashKey = "de51c9a388700add01";
-// const merchId = "317157";
-const merchId = "628856";
+var res_DecKey = ServerHelper.decrptypay;
 
-const merchPass = "62915a61";
+var res_Salt = ServerHelper.decrptypay;
+var resHashKey = ServerHelper.hashrequeskey;
+var merchId = ServerHelper.merchentId;
+
+var merchPass = ServerHelper.merchPass;
 const prodId = "SCHOOL";
 // final authUrl = "https://paynetzuat.atomtech.in/ots/aipay/auth";
 final authUrl = "https://payment1.atomtech.in/ots/aipay/auth";
@@ -451,7 +448,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   }) async {
     try {
       final url = Uri.parse(
-          'https://stmarysapi.lumensof.in/api/Paymet/api/payment/capture-response');
+          '${ServerHelper.baseUrl}Paymet/api/payment/capture-response');
 
       // Prepare the request body to match the expected format
       String valueString = '';
