@@ -607,7 +607,7 @@ class _DashBoardPageScreenState extends State<DashBoardPageScreen> {
                   child: CircleAvatar(
                     radius: 22,
                     backgroundColor: Colors.white,
-                    backgroundImage: AssetImage("assets/images/logo.jpeg"),
+                    backgroundImage: AssetImage(appIcon),
                   ),
                 ),
                 Padding(

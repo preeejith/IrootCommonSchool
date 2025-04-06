@@ -49,7 +49,7 @@
 
 //     // Transaction details
 //     String plainText =
-//         "merchantId=$merchantId|txnAmount=${widget.txnAmount}|txnCurrency=INR|orderId=${widget.orderId}|returnUrl=https://stmarysapi.lumensof.in/api/Paymet/api/payment/capture-response";
+//         "merchantId=$merchantId|txnAmount=${widget.txnAmount}|txnCurrency=INR|orderId=${widget.orderId}|returnUrl=https://stpaulapi.lumensof.in/api/Paymet/api/payment/capture-response";
 
 //     // Encrypt the data
 //     String encData = encryptData(plainText, secretKey, iv);
@@ -147,7 +147,7 @@ library;
 //     String iv = "YOUR_IV";
 
 //     String plainText =
-//         "merchantId=$merchantId|txnAmount=${widget.txnAmount}|txnCurrency=INR|orderId=${widget.orderId}|returnUrl=https://stmarysapi.lumensof.in/api/Paymet/api/payment/capture-response";
+//         "merchantId=$merchantId|txnAmount=${widget.txnAmount}|txnCurrency=INR|orderId=${widget.orderId}|returnUrl=https://stpaulapi.lumensof.in/api/Paymet/api/payment/capture-response";
 //     String encData = encryptData(plainText, secretKey, iv);
 
 //     String paymentUrl =

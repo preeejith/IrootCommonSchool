@@ -12,9 +12,9 @@ class InAppUpdate extends StatefulWidget {
 
 class _InAppUpdateState extends State<InAppUpdate> {
   final Uri _androidUrl =
-      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsm');
+      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsp');
   final Uri _iosUrl =
-      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsm');
+      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsp');
 
   Future<void> _launchStoreUrl() async {
     final url = Platform.isIOS ? _iosUrl : _androidUrl;
@@ -33,8 +33,8 @@ class _InAppUpdateState extends State<InAppUpdate> {
           ? UpgradeDialogStyle.cupertino
           : UpgradeDialogStyle.material,
       messages: UpgraderMessages(
-          // title: "Update ST.MARY'S HIGHER SECONDARY",
-          // body: "ST.MARY'S HIGHER SECONDARY recommends that you update to the latest version",
+          // title: "Update ST Paul's Secondary School",
+          // body: "ST Paul's Secondary School recommends that you update to the latest version",
           // buttonTitleLater: 'No Thanks',
           // buttonTitleUpdate: 'Update Now',
           ),

@@ -14,19 +14,20 @@ class ServerHelper {
   //nirmala_
   //payment
   //stmarypayment
-  static String encrptypay = "F7F04ECA0B0A8C00C14620750BF4FCDD";
-  static String decrptypay = "E074A2C130FC4FF676932DB3F8ABAC9F";
-  static String merchentId = "628856";
-  static String hashrequeskey = "de51c9a388700add01";
-  static String merchPass = "62915a61";
+  static String encrptypay = "70C0847DE15A7548E0064377E91FD78A";
+  static String decrptypay = "14134E03C14D81FF39546973E89343EE";
+  static String merchentId = "656207";
+  static String hashrequeskey = "d12109d6d53b0e6772";
+  static String merchPass = "35c9ea61";
   //payment
-  static String myschoolauth = "stmary_";
 
-  static String baseUrlOhyes = "https://stmarysapi.lumensof.in/api/";
+  static String myschoolauth = "stpaul_";
+
+  static String baseUrlOhyes = "https://stpaulapi.lumensof.in/api/";
   // static const baseUrlOhyes =
 
   //MyQpadServer
-  static const baseUrl = "https://stmarysapi.lumensof.in/api/";
+  static const baseUrl = "https://stpaulapi.lumensof.in/api/";
   static const imageUrl = "https://api.myqpad.com/file/get/";
   // static const baseUrl = "http://192.168.1.14:4000";
   // static const imageUrl = "http://192.168.1.14:4000/file/get/";

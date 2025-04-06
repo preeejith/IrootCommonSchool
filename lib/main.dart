@@ -10,7 +10,6 @@ import 'package:iroots/common/app_data.dart';
 import 'package:iroots/services/firebase_options.dart';
 import 'package:iroots/services/notification_service.dart';
 import 'package:iroots/src/utility/const.dart';
-
 import 'src/ui/splash/splash_page.dart';
 
 //

@@ -6,22 +6,18 @@
 //nirmala_
 library;
 
-//
 import 'package:iroots/bloc/blocserver/serverhelper.dart';
 
-const String baseUrlName = 'https://stmarysapi.lumensof.in/api/';
+const String baseUrlName = 'https://stpaulapi.lumensof.in/api/';
 const String baseUrlName2 = 'https://stmarysapi.lumensof.in/api';
-const String appName = "ST.MARY'S HIGHER SECONDARY";
-const String appBundle = "com.irootsm";
-const String myschoolauth = "stmary_";
-String _reqEncKey = myschoolauth == "stmary_"
-    ? "F7F04ECA0B0A8C00C14620750BF4FCDD"
-    : "F7F04ECA0B0A8C00C14620750BF4FCDD";
+const String appName = "ST Paul's Secondary School";
+const String appBundle = "com.irootsp";
+const String myschoolauth = "stpaul_";
 
 // const String appIcon = "assets/images/logo.jpeg";
 const String appIcon = myschoolauth == "stmary_"
     ? "assets/new/newlogo.png"
-    : myschoolauth == "stmary_"
+    : myschoolauth == "stpaul_"
         ? "assets/new/stpaulicon.jpeg"
         : "assets/new/newlogo.png";
 
@@ -50,7 +46,7 @@ const String storageBucket = "stmarys-df49c.appspot.com";
 
 // const String baseUrlName = 'http://stmaryswilliamnagarapi.lumensof.in/api';
 // const String appName = "St. Mary's Sec School";
-// const String appBundle = "com.irootsm.st_mary";
+// const String appBundle = "com.irootsp.st_mary";
 // const String appIcon = "assets/images/stmary.jpeg";
 // const String slider1 = "assets/images/slider7.png";
 // const String slider2 = "assets/images/slider8.png";
@@ -65,7 +61,7 @@ const String storageBucket = "stmarys-df49c.appspot.com";
 //
 // const String baseUrlName = 'http://stthomasnorthaip.lumensof.in/api/';
 // const String appName = "ST.THOMAS HIGHER SECONDARY SCHOOL";
-// const String appBundle = "com.irootsm.st_thomas";
+// const String appBundle = "com.irootsp.st_thomas";
 // const String appIcon = "assets/images/thomas.jpeg";
 // const String slider1 = "assets/images/slider4.png";
 // const String slider2 = "assets/images/slider5.png";
@@ -115,7 +111,7 @@ const String storageBucket = "stmarys-df49c.appspot.com";
 
 // Change package Name
 
-// dart run change_app_package_name:main com.irootsm.st_thomas
+// dart run change_app_package_name:main com.irootsp.st_thomas
 
 
 /// Change Icon

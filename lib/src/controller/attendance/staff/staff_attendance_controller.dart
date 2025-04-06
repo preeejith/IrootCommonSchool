@@ -131,7 +131,7 @@ class StaffAttendanceController extends GetxController {
 
             ),
         // "${baseUrlName}Attendance/EditStudentAttendance"),
-        //https://stmarysapi.lumensof.in/api/Student/GetStudentDetailsByClassSection?ClassId=615&SectionId=23
+        //https://stpaulapi.lumensof.in/api/Student/GetStudentDetailsByClassSection?ClassId=615&SectionId=23
         // "${baseUrlName}Student/GetStudentDetailsByClassSection?ClassId=615&SectionId=23"),
         headers: {
           'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ class StaffAttendanceController extends GetxController {
                     createdDate: _selectedDateFromCalender,
                     attendanceId: 0,
                     day: _currentDay,
-                    batchId:student.batchId.toString() ,
+                    batchId: student.batchId.toString(),
                     sectionId: student.sectionId,
                     sectionName: staffHomeWorkController.staffClassmodel!.data!
                             .firstWhere(

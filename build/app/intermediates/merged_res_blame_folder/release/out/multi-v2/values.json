@@ -1,8 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsm.app-mergeReleaseResources-55:/values/values.xml",
+            "outputFile": "com.irootsp.app-mergeReleaseResources-55:/values/values.xml",
             "map": [
+                {
+                    "source": "/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,818",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "476,982"
+                    },
+                    "to": {
+                        "startLines": "1568,1572",
+                        "startColumns": "4,4",
+                        "startOffsets": "100158,100339",
+                        "endLines": "1571,1574",
+                        "endColumns": "12,12",
+                        "endOffsets": "100334,100503"
+                    }
+                },
                 {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/1c1c4a96342c9ea4d9eac3086dc327a5/transformed/recyclerview-1.0.0/res/values/values.xml",
                     "from": {
@@ -328,6 +347,25 @@
                     }
                 },
                 {
+                    "source": "/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/build/flutter_inappwebview_android/intermediates/packaged_res/release/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,11,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,102,153,210,259,306,353,426,502",
+                        "endLines": "2,3,4,5,6,7,10,13,21",
+                        "endColumns": "46,50,56,48,46,46,12,12,12",
+                        "endOffsets": "97,148,205,254,301,348,421,497,949"
+                    },
+                    "to": {
+                        "startLines": "403,404,405,406,407,446,462,1565,2069",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "24315,24362,24413,24470,24519,28465,29573,100082,134439",
+                        "endLines": "403,404,405,406,407,446,464,1567,2076",
+                        "endColumns": "46,50,56,48,46,46,12,12,12",
+                        "endOffsets": "24357,24408,24465,24514,24561,28507,29641,100153,134886"
+                    }
+                },
+                {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/e5ecb094ec56448c1d1718566c240925/transformed/jetified-firebase-messaging-24.1.0/res/values/values.xml",
                     "from": {
                         "startLines": "2",
@@ -364,7 +402,7 @@
                     }
                 },
                 {
-                    "source": "/Users/ohyes/Documents/lroots/Lumen-App/build/app/generated/res/google-services/release/values/values.xml",
+                    "source": "/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/build/app/generated/res/google-services/release/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -378,44 +416,6 @@
                         "startOffsets": "27953,28035,28139,28248,28368,28696",
                         "endColumns": "81,103,108,119,96,73",
                         "endOffsets": "28030,28134,28243,28363,28460,28765"
-                    }
-                },
-                {
-                    "source": "/Users/ohyes/Documents/lroots/Lumen-App/android/app/src/main/res/values/styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,818",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "476,982"
-                    },
-                    "to": {
-                        "startLines": "1568,1572",
-                        "startColumns": "4,4",
-                        "startOffsets": "100158,100339",
-                        "endLines": "1571,1574",
-                        "endColumns": "12,12",
-                        "endOffsets": "100334,100503"
-                    }
-                },
-                {
-                    "source": "/Users/ohyes/Documents/lroots/Lumen-App/build/flutter_inappwebview_android/intermediates/packaged_res/release/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,11,14",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,102,153,210,259,306,353,426,502",
-                        "endLines": "2,3,4,5,6,7,10,13,21",
-                        "endColumns": "46,50,56,48,46,46,12,12,12",
-                        "endOffsets": "97,148,205,254,301,348,421,497,949"
-                    },
-                    "to": {
-                        "startLines": "403,404,405,406,407,446,462,1565,2069",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "24315,24362,24413,24470,24519,28465,29573,100082,134439",
-                        "endLines": "403,404,405,406,407,446,464,1567,2076",
-                        "endColumns": "46,50,56,48,46,46,12,12,12",
-                        "endOffsets": "24357,24408,24465,24514,24561,28507,29641,100153,134886"
                     }
                 },
                 {

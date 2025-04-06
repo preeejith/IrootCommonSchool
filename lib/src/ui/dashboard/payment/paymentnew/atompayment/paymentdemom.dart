@@ -369,6 +369,16 @@ class _PayPageState extends State<PayPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => PaymentWebView(
+                                      userEmailId: widget
+                                          .preparePaymentRepsonseModel!
+                                          .data!
+                                          .email
+                                          .toString(),
+                                      userPhone: widget
+                                          .preparePaymentRepsonseModel!
+                                          .data!
+                                          .email
+                                          .toString(),
                                       atomTokenId: atomTokenId.toString(),
                                       merchId: merchId,
                                       currentTxnId: currentTxnId,
@@ -390,12 +400,14 @@ class _PayPageState extends State<PayPage> {
 class PaymentWebView extends StatefulWidget {
   final String atomTokenId;
   final String merchId;
-  final String currentTxnId;
+  final String currentTxnId, userEmailId, userPhone;
 
   const PaymentWebView({
     required this.atomTokenId,
     required this.merchId,
     required this.currentTxnId,
+    required this.userEmailId,
+    required this.userPhone,
     super.key,
   });
 
@@ -412,7 +424,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   //     String status, Map<String, dynamic>? responseData) async {
   //   try {
   //     final url = Uri.parse(
-  //         'https://stmarysapi.lumensof.in/api/Paymet/api/payment/capture-response');
+  //         'https://stpaulapi.lumensof.in/api/Paymet/api/payment/capture-response');
 
   //     // Prepare the request body
   //     final requestBody = {
@@ -630,8 +642,8 @@ class _PaymentWebViewState extends State<PaymentWebView> {
                       const options = {
                         "atomTokenId": "${widget.atomTokenId}",
                           "merchId": "${widget.merchId}",
-                          "custEmail": "test.user@gmail.com",
-                          "custMobile": "8888888888",
+                          "custEmail": "${widget.userEmailId}",
+                          "custMobile": "${widget.userPhone}",
                           "returnUrl": "https://pgtest.atomtech.in/mobilesdk/param",
                           "userAgent": "mobile_webView"
                         };
