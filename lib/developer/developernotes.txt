@@ -1,0 +1,9 @@
+###important things that need to look when changing to one build to another
+##chnage the package name
+##change the slide pages
+##change the all baseurls
+##chnage the payment gateway things
+##change the logos 
+###chnage the Name Every where
+##chnage app icon
+##

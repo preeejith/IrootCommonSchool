@@ -13,6 +13,7 @@ import 'package:iroots/src/utility/const.dart';
 
 import 'src/ui/splash/splash_page.dart';
 
+//
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
