@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:iroots/bloc/blocmodels/merchentdetailsmodel.dart';
 import 'package:iroots/bloc/blocmodels/paymentinputresponsemodel.dart';
 import 'package:iroots/bloc/blocserver/serverhelper.dart';
 import 'package:iroots/bloc/mainbloc.dart';
@@ -167,7 +168,9 @@ Future<bool> validateSignature(
 
 class PayPage extends StatefulWidget {
   final PreparePaymentRepsonseModel? preparePaymentRepsonseModel;
-  const PayPage({super.key, this.preparePaymentRepsonseModel});
+  final MerchentDetailsModel? merchentDetailsModel;
+  const PayPage(
+      {super.key, this.preparePaymentRepsonseModel, this.merchentDetailsModel});
 
   @override
   State<PayPage> createState() => _PayPageState();
@@ -177,11 +180,23 @@ class _PayPageState extends State<PayPage> {
   @override
   void initState() {
     super.initState();
+    _fetchData();
+
     print(widget.preparePaymentRepsonseModel);
     // Generate atom token when page loads
     initiatePayment();
   }
 
+  _fetchData() {
+    if (widget.merchentDetailsModel!.data != null) {
+      req_EncKey = widget.merchentDetailsModel!.data!.encryptKey.toString();
+      req_Salt = widget.merchentDetailsModel!.data!.encryptKey.toString();
+      res_DecKey = widget.merchentDetailsModel!.data!.decryptKey.toString();
+      res_Salt = widget.merchentDetailsModel!.data!.decryptKey.toString();
+      merchId = widget.merchentDetailsModel!.data!.marchentId.toString();
+      merchPass = widget.merchentDetailsModel!.data!.password.toString();
+    }
+  }
   // //Generate Signature
   // Future<String> generateSignature(Map<String, dynamic> respArray) async {
   //   print("Generating signature using response array.");
@@ -424,7 +439,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   //     String status, Map<String, dynamic>? responseData) async {
   //   try {
   //     final url = Uri.parse(
-  //         'https://stpaulapi.lumensof.in/api/Paymet/api/payment/capture-response');
+  //         'https://stmaryswilliamnagarapi.lumensof.in/api/Paymet/api/payment/capture-response');
 
   //     // Prepare the request body
   //     final requestBody = {

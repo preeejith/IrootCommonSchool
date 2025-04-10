@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.irootsp">
+    package="com.irootsm.st_mary">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,7 +16,7 @@
         android:name="${applicationName}"
     
            android:icon="@mipmap/ic_launcher"
-        android:label="ST Paul's Secondary School"
+        android:label="St.mary's sec school"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

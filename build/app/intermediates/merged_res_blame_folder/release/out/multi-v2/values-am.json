@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsp.app-mergeReleaseResources-55:/values-am/values-am.xml",
+            "outputFile": "com.irootsm.st_mary.app-mergeReleaseResources-55:/values-am/values-am.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/0c6becca03b65eb27365a103ee33b2f3/transformed/jetified-play-services-base-18.5.0/res/values-am/values.xml",

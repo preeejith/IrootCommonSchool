@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsp.app-mergeReleaseResources-55:/values-kn/values-kn.xml",
+            "outputFile": "com.irootsm.st_mary.app-mergeReleaseResources-55:/values-kn/values-kn.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/res/values-kn/values-kn.xml",

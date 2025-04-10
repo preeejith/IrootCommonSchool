@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsp.app-mergeReleaseResources-55:/values-hu/values-hu.xml",
+            "outputFile": "com.irootsm.st_mary.app-mergeReleaseResources-55:/values-hu/values-hu.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/c1cff28a8a5d2e105d47f3808f007221/transformed/preference-1.2.1/res/values-hu/values-hu.xml",

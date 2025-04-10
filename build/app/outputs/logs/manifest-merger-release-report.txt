@@ -87,7 +87,7 @@ MERGED from [com.google.android.play:core-common:2.0.3] /Users/ohyes/.gradle/cac
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:label
-		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:19:9-51
+		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:19:9-45
 	android:icon
 		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:18:12-46
 	android:usesCleartextTraffic
@@ -213,7 +213,7 @@ MERGED from [androidx.multidex:multidex:2.0.1] /Users/ohyes/.gradle/caches/trans
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] /Users/ohyes/.gradle/caches/transforms-4/41d4fd659c0878717b27e53d9f49393f/transformed/jetified-relinker-1.4.5/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.play:core-common:2.0.3] /Users/ohyes/.gradle/caches/transforms-4/b8895b4278fd2d8c219e41a9f8a389aa/transformed/jetified-core-common-2.0.3/AndroidManifest.xml:2:1-21:12
 	package
-		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:3:5-26
+		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:3:5-34
 		INJECTED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml
@@ -269,7 +269,7 @@ REJECTED from [com.google.android.gms:play-services-measurement-sdk-api:22.2.0] 
 		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:10:77-96
 	android:name
 		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:10:22-76
-activity#com.irootsp.MainActivity
+activity#com.irootsm.st_mary.MainActivity
 ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:21:9-40:20
 	android:launchMode
 		ADDED from /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:26:13-43
@@ -1031,7 +1031,7 @@ ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/
 		ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
 	android:name
 		ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
-permission#com.irootsp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+permission#com.irootsm.st_mary.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
 		ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
@@ -1041,7 +1041,7 @@ uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
-uses-permission#com.irootsp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission#com.irootsm.st_mary.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:26:22-94

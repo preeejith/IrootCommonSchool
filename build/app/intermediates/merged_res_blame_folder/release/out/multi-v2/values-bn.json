@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsp.app-mergeReleaseResources-55:/values-bn/values-bn.xml",
+            "outputFile": "com.irootsm.st_mary.app-mergeReleaseResources-55:/values-bn/values-bn.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/4ee1585b083593d90c5933a2eecd3b54/transformed/appcompat-1.6.1/res/values-bn/values-bn.xml",

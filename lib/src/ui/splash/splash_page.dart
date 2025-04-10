@@ -15,7 +15,8 @@ class SplashPage extends StatelessWidget {
       builder: (logic) => Scaffold(
         backgroundColor: ConstClass.themeColor,
         body: Center(
-          child: ServerHelper.myschoolauth == "stmary_"
+          child: ServerHelper.myschoolauth == "stmary_" ||
+                  ServerHelper.myschoolauth == "stthomas_"
               ? Image.asset(
                   appIcon,
                   width: 200,

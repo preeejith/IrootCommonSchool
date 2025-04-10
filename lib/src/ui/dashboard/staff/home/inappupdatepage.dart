@@ -11,10 +11,10 @@ class InAppUpdate extends StatefulWidget {
 }
 
 class _InAppUpdateState extends State<InAppUpdate> {
-  final Uri _androidUrl =
-      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsp');
-  final Uri _iosUrl =
-      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsp');
+  final Uri _androidUrl = Uri.parse(
+      'https://play.google.com/store/apps/details?id=com.irootsm.st_mary');
+  final Uri _iosUrl = Uri.parse(
+      'https://play.google.com/store/apps/details?id=com.irootsm.st_mary');
 
   Future<void> _launchStoreUrl() async {
     final url = Platform.isIOS ? _iosUrl : _androidUrl;
@@ -28,13 +28,15 @@ class _InAppUpdateState extends State<InAppUpdate> {
     // Using UpgraderMessage to customize the update message
     final upgrader = Upgrader(
       durationUntilAlertAgain: const Duration(days: 1),
-      minAppVersion: '1.0.22',
+      minAppVersion: '1.0.21',
       dialogStyle: Platform.isIOS
           ? UpgradeDialogStyle.cupertino
           : UpgradeDialogStyle.material,
+      showIgnore: false,
+      showLater: false,
       messages: UpgraderMessages(
-          // title: "Update ST Paul's Secondary School",
-          // body: "ST Paul's Secondary School recommends that you update to the latest version",
+          // title: "Update St.mary's sec school",
+          // body: "St.mary's sec school recommends that you update to the latest version",
           // buttonTitleLater: 'No Thanks',
           // buttonTitleUpdate: 'Update Now',
           ),

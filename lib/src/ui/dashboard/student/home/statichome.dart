@@ -13,6 +13,7 @@ class _StaticHomeState extends State<StaticHome> {
   @override
   void initState() {
     BlocProvider.of<MainBloc>(context).add(GetDashboardStudentData());
+    BlocProvider.of<MainBloc>(context).add(GetMerchentData());
     super.initState();
   }
 

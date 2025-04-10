@@ -425,6 +425,9 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) => PayPage(
+                                                      merchentDetailsModel: context
+                                                          .read<MainBloc>()
+                                                          .merchentDetailsModel,
                                                       preparePaymentRepsonseModel:
                                                           context
                                                               .read<MainBloc>()
@@ -472,7 +475,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                                           //                   .data!
                                           //                   .returnurl
                                           //                   .toString(),
-                                          //               // "https://stpaulapi.lumensof.in/api/Paymet/api/payment/capture-response",
+                                          //               // "https://stmaryswilliamnagarapi.lumensof.in/api/Paymet/api/payment/capture-response",
                                           //               // context
                                           //               //     .read<MainBloc>()
                                           //               //     .preparePaymentRepsonseModel

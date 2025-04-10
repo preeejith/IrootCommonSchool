@@ -9,6 +9,7 @@ import 'package:iroots/bloc/blocmodels/adminexmpublishmodel.dart';
 import 'package:iroots/bloc/blocmodels/dashboardstudentmodel.dart';
 import 'package:iroots/bloc/blocmodels/getclasslistmodel.dart';
 import 'package:iroots/bloc/blocmodels/homeworkdeletemodel.dart';
+import 'package:iroots/bloc/blocmodels/merchentdetailsmodel.dart';
 import 'package:iroots/bloc/blocmodels/paymentcapturemodel.dart';
 import 'package:iroots/bloc/blocmodels/paymentinputresponsemodel.dart';
 import 'package:iroots/bloc/blocmodels/shopdetailsmodel.dart';
@@ -29,7 +30,7 @@ class MainBloc extends Bloc<MainEvents, MainState> {
   StudReportCardModel studReportCardModelunit2 = StudReportCardModel();
   DashboardProfileModel dashboardProfileModel = DashboardProfileModel();
   ClassListModel classListModel = ClassListModel();
-
+  MerchentDetailsModel merchentDetailsModel = MerchentDetailsModel();
   HomeWorkDeleteModel homeWorkDeleteModel = HomeWorkDeleteModel();
   CaptureModel captureModel = CaptureModel();
   String? classdropdownvalue = "";
@@ -42,6 +43,11 @@ class MainBloc extends Bloc<MainEvents, MainState> {
   String? studentSection = "";
   String? studentrollnumber = "";
   double attendancepercentage = 1.0;
+  String? merchentId = "";
+  String? encryptKey = "";
+  String? decryptKey = "";
+  String? paymentpassword = "";
+
   StudReportCardModel studReportCardModelunit3 = StudReportCardModel();
 
   double totalfeeamount = 0;
@@ -59,6 +65,8 @@ class MainBloc extends Bloc<MainEvents, MainState> {
     on<GetPreparePayment>(getPreparePayment);
     on<GetAdminExmPublishDetails>(getAdminExmPublishDetails);
     on<GetDashboardStudentData>(getDashboardStudentData);
+    on<GetMerchentData>(getMerchentData);
+
     on<GetCapturePaymentResponse>(getCapturePaymentResponse);
     on<GetClassList>(getClassList);
     on<HomeWorkDelete>(homeWorkDelete);
@@ -319,6 +327,30 @@ class MainBloc extends Bloc<MainEvents, MainState> {
     }
   }
 
+  Future<FutureOr<void>> getMerchentData(
+      GetMerchentData event, Emitter<MainState> emit) async {
+    try {
+      emit(GettingMerchentDetails());
+
+      merchentDetailsModel =
+          MerchentDetailsModel.fromJson(await ServerHelper.getohYes(
+        'Paymet/MarchentDetails',
+      ));
+      if (merchentDetailsModel.data != null) {
+        merchentId = merchentDetailsModel.data!.marchentId.toString();
+        encryptKey = merchentDetailsModel.data!.encryptKey.toString();
+        decryptKey = merchentDetailsModel.data!.decryptKey.toString();
+        paymentpassword = merchentDetailsModel.data!.password.toString();
+        emit(MerchentDetailsSuccess());
+      } else if (merchentDetailsModel.data == null) {
+        // Helper.showToast(msg: myqpadshoplistModel.message);
+        emit(MerchentDetailsFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(MerchentDetailsError(error: "Invalid credentials"));
+    }
+  }
+
   Future<FutureOr<void>> getCapturePaymentResponse(
       GetCapturePaymentResponse event, Emitter<MainState> emit) async {
     try {
@@ -381,7 +413,7 @@ class MainBloc extends Bloc<MainEvents, MainState> {
         token,
       ));
       if (captureModel.message != null) {
-        emit(PaymentCaptureSuccess(message:captureModel.message));
+        emit(PaymentCaptureSuccess(message: captureModel.message));
       } else if (captureModel.message == null) {
         // Helper.showToast(msg: myqpadshoplistModel.message);
         emit(PaymentCaptureFailed(error: "Invalid credentials"));
@@ -612,6 +644,17 @@ class GetDashboardStudentData extends MainEvents {
       this.searchkeyword});
 }
 
+class GetMerchentData extends MainEvents {
+  final String? shopId, lon, userphone, username, searchkeyword;
+
+  GetMerchentData(
+      {this.shopId,
+      this.lon,
+      this.userphone,
+      this.username,
+      this.searchkeyword});
+}
+
 class MainState {}
 
 class LoginInitial extends MainState {}
@@ -640,13 +683,13 @@ class HomeWorkDeleteSuccess extends MainState {}
 
 class DashboardProfileSuccess extends MainState {}
 
+class MerchentDetailsSuccess extends MainState {}
 
 class PaymentCaptureSuccess extends MainState {
   final String? message;
 
   PaymentCaptureSuccess({this.message});
 }
-
 
 class StudentFeeListError extends MainState {
   final String? error;
@@ -696,6 +739,12 @@ class DashboardProfileError extends MainState {
   DashboardProfileError({this.error});
 }
 
+class MerchentDetailsError extends MainState {
+  final String? error;
+
+  MerchentDetailsError({this.error});
+}
+
 class PaymentCaptureError extends MainState {
   final String? error;
 
@@ -723,6 +772,8 @@ class GettingClassList extends MainState {}
 class DeletingHomeWork extends MainState {}
 
 class GettingDashboardprofile extends MainState {}
+
+class GettingMerchentDetails extends MainState {}
 
 class GettingPreparepaymentcapture extends MainState {}
 
@@ -776,6 +827,12 @@ class DashboardProfileFailed extends MainState {
   final String? error;
 
   DashboardProfileFailed({this.error});
+}
+
+class MerchentDetailsFailed extends MainState {
+  final String? error;
+
+  MerchentDetailsFailed({this.error});
 }
 
 class PaymentCaptureFailed extends MainState {

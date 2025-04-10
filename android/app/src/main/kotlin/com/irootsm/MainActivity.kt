@@ -1,4 +1,4 @@
-package com.irootsp
+package com.irootsm.st_mary
 
 import io.flutter.embedding.android.FlutterActivity
 
