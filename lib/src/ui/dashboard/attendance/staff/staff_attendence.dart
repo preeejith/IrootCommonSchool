@@ -990,10 +990,11 @@ class _StaffAttendanceScreenState extends State<StaffAttendanceScreen> {
                                             ),
                                             TableCell(
                                               child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(14.0),
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0, right: 10),
                                                 child: Text(
-                                                  item.studentName.toString(),
+                                                  "${item.studentName}",
+                                                  maxLines: 2,
                                                   textAlign: TextAlign.left,
                                                 ),
                                               ),

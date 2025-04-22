@@ -132,13 +132,15 @@ class DashBoardController extends GetxController {
 //subjectselection
   Future<void> _getAdminCourse() async {
     try {
+      String? StaffId = await PrefManager.getStaffId();
+
       // final response = await http.get(
       //      Uri.parse("${baseUrlName}UserCredentials/GetSubjects"),
       //     // Uri.parse("${baseUrlName}Exam/GetClassList?staff_Id=105"),
       //     headers: credentials);
       final response = await http.post(
           // Uri.parse("${baseUrlName}UserCredentials/GetSubjects"),
-          Uri.parse("${baseUrlName}Exam/GetClassList?staff_Id=105"),
+          Uri.parse("${baseUrlName}Exam/GetClassList?staff_Id=$StaffId"),
           headers: credentials);
 
       if (response.statusCode == 200) {

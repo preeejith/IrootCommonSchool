@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iroots/bloc/bloclocalstorage/prefmanager.dart';
 import 'package:iroots/bloc/blocmodels/adminexmpublishmodel.dart';
+import 'package:iroots/bloc/blocmodels/currentversionmodel.dart';
 import 'package:iroots/bloc/blocmodels/dashboardstudentmodel.dart';
 import 'package:iroots/bloc/blocmodels/getclasslistmodel.dart';
 import 'package:iroots/bloc/blocmodels/homeworkdeletemodel.dart';
@@ -33,8 +34,9 @@ class MainBloc extends Bloc<MainEvents, MainState> {
   MerchentDetailsModel merchentDetailsModel = MerchentDetailsModel();
   HomeWorkDeleteModel homeWorkDeleteModel = HomeWorkDeleteModel();
   CaptureModel captureModel = CaptureModel();
+  CurrentVersionModel currentVersionModel = CurrentVersionModel();
   String? classdropdownvalue = "";
-
+  String? latestversion = "0";
   bool? term1exmhpn = false;
   bool? term2exmhpn = false;
   bool? term3exmhpn = false;
@@ -69,6 +71,7 @@ class MainBloc extends Bloc<MainEvents, MainState> {
 
     on<GetCapturePaymentResponse>(getCapturePaymentResponse);
     on<GetClassList>(getClassList);
+    on<GetCurrentVersion>(getCurrentVersion);
     on<HomeWorkDelete>(homeWorkDelete);
     on<UpdateClassDropdownValue>(updateClassDropdownValue);
   }
@@ -253,6 +256,26 @@ class MainBloc extends Bloc<MainEvents, MainState> {
       }
     } catch (e) {
       emit(ClassListError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> getCurrentVersion(
+      GetCurrentVersion event, Emitter<MainState> emit) async {
+    try {
+      emit(GettingVersion());
+
+      currentVersionModel = CurrentVersionModel.fromJson(await ServerHelper.get(
+        'Dashboard/MobileAppVersion',
+      ));
+      if (currentVersionModel.data != null) {
+        emit(VersionSuccess());
+        latestversion =
+            currentVersionModel.data!.mobileApp![0].versionName.toString();
+      } else if (currentVersionModel.responseCode != "200") {
+        emit(VersionFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(VersionFailed(error: "Invalid credentials"));
     }
   }
 
@@ -611,6 +634,17 @@ class GetClassList extends MainEvents {
       this.searchkeyword});
 }
 
+class GetCurrentVersion extends MainEvents {
+  final String? atomId, lon, userphone, username, searchkeyword;
+
+  GetCurrentVersion(
+      {this.atomId,
+      this.lon,
+      this.userphone,
+      this.username,
+      this.searchkeyword});
+}
+
 class HomeWorkDelete extends MainEvents {
   final String? assignmentId, lon, userphone, username, searchkeyword;
 
@@ -678,6 +712,8 @@ class PaymentInputResSuccess extends MainState {}
 class AdminExmDetailsSuccess extends MainState {}
 
 class ClassListSuccess extends MainState {}
+
+class VersionSuccess extends MainState {}
 
 class HomeWorkDeleteSuccess extends MainState {}
 
@@ -769,6 +805,8 @@ class GettingAdminExmPublishDetails extends MainState {}
 
 class GettingClassList extends MainState {}
 
+class GettingVersion extends MainState {}
+
 class DeletingHomeWork extends MainState {}
 
 class GettingDashboardprofile extends MainState {}
@@ -815,6 +853,12 @@ class ClassListFailed extends MainState {
   final String? error;
 
   ClassListFailed({this.error});
+}
+
+class VersionFailed extends MainState {
+  final String? error;
+
+  VersionFailed({this.error});
 }
 
 class HomeWorkFailed extends MainState {

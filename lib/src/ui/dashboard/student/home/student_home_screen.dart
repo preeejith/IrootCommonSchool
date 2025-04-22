@@ -38,7 +38,7 @@ class StudentHomePageScreen extends StatelessWidget {
                       height: 5,
                     ),
                     StaticHome(),
-                    InAppUpdate(),
+                    InAppUpdateManual(),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 0),

@@ -74,6 +74,16 @@ class PrefManager {
     return prefs.getString('StuClassId');
   }
 
+  static setStaffId(var staffId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('StaffId', staffId);
+  }
+
+  static getStaffId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('StaffId');
+  }
+
   static Future<void> setCapturePosition(Position capturePosition) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // Convert the Position object to a JSON string

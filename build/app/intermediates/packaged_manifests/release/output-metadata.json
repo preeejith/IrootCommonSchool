@@ -4,15 +4,15 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.irootsm.st_mary",
+  "applicationId": "com.irootsp",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 22,
-      "versionName": "1.0.22",
+      "versionCode": 25,
+      "versionName": "1.0.25",
       "outputFile": "AndroidManifest.xml"
     }
   ],

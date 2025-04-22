@@ -1437,7 +1437,7 @@ Future<String> decrypt2(String encData) async {
 //   Future<void> _capturePaymentResponse(String response) async {
 //     try {
 //       var apiUrl = Uri.parse(widget.returnurl ??
-//           'https://stmaryswilliamnagarapi.lumensof.in/api/Paymet/api/payment/capture-response');
+//           'https://stpaulapi.lumensof.in/api/Paymet/api/payment/capture-response');
 
 //       var requestBody = jsonEncode({
 //         "key": "response",
@@ -2785,7 +2785,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   // }) async {
   //   try {
   //     final url = Uri.parse(
-  //         'https://stmaryswilliamnagarapi.lumensof.in/api/Paymet/api/payment/capture-response');
+  //         'https://stpaulapi.lumensof.in/api/Paymet/api/payment/capture-response');
 
   //     // Prepare the request body to match the expected format
   //     String valueString = '';

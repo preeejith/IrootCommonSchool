@@ -213,10 +213,15 @@ class AuthController extends GetxController {
             String? nameStudent2 = studentList[0]["LastName"];
             String? fullname = "$nameStudent $nameStudent2";
             String? classId = studentList[0]["ClassId"].toString();
+            String? staffId = loginResponse.data!.userRoleName == "Staff"
+                ? studentList[0]["StafId"].toString()
+                : "";
+
             await PrefManager.setName(fullname);
+            await PrefManager.setStaffId(staffId);
             await PrefManager.setClassId(classId);
           }
-
+          if (loginResponse.data!.userRoleName == "Staff") {}
           _hideProgress();
           Get.offAll(() => const DashBoardPageScreen());
         } else if (loginResponse.responseCode == "500") {

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsm.st_mary.app-mergeReleaseResources-55:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.irootsp.app-mergeReleaseResources-55:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/res/values-night/styles.xml",

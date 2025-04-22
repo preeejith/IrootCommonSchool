@@ -1,90 +1,90 @@
 [
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher_background.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxxhdpi/ic_launcher_background.png"
+        "merged": "com.irootsp.app-merged_res-57:/drawable-v21_launch_background.xml.flat",
+        "source": "com.irootsp.app-main-50:/drawable-v21/launch_background.xml"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xhdpi_ic_launcher_background.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xhdpi/ic_launcher_background.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-mdpi_ic_launcher_monochrome.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-mdpi/ic_launcher_monochrome.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xhdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xhdpi/ic_launcher_monochrome.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher_monochrome.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxxhdpi/ic_launcher_monochrome.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxxhdpi/ic_launcher_background.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxhdpi_ic_launcher_background.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxhdpi/ic_launcher_background.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-mdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-mdpi/ic_launcher_monochrome.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-hdpi/ic_launcher_foreground.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-mdpi/ic_launcher_foreground.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxxhdpi/ic_launcher_monochrome.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxhdpi/ic_launcher_foreground.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-mdpi_ic_launcher_background.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-mdpi/ic_launcher_background.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-mdpi/ic_launcher.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxxhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xxhdpi_ic_launcher_monochrome.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xxhdpi/ic_launcher_monochrome.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-mdpi_ic_launcher_background.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-mdpi/ic_launcher_background.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-mdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xhdpi_ic_launcher_monochrome.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xhdpi/ic_launcher_monochrome.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-hdpi_ic_launcher_background.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-hdpi/ic_launcher_background.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-hdpi_ic_launcher_background.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-hdpi/ic_launcher_background.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxhdpi_ic_launcher_background.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxhdpi/ic_launcher_background.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xhdpi/ic_launcher_foreground.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxhdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxhdpi/ic_launcher_monochrome.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-hdpi_ic_launcher_monochrome.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-hdpi/ic_launcher_monochrome.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-hdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-hdpi/ic_launcher_monochrome.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/mipmap-xhdpi_ic_launcher_background.png.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/mipmap-xhdpi/ic_launcher_background.png"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-hdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.irootsm.st_mary.app-merged_res-57:/drawable-v21_launch_background.xml.flat",
-        "source": "com.irootsm.st_mary.app-main-50:/drawable-v21/launch_background.xml"
+        "merged": "com.irootsp.app-merged_res-57:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.irootsp.app-main-50:/mipmap-xxhdpi/ic_launcher_foreground.png"
     }
 ]

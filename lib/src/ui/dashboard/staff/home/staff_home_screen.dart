@@ -35,7 +35,7 @@ class StaffHomePageScreen extends StatelessWidget {
                     todayAttendanceWidget(logic),
                     const SizedBox(height: 5),
 
-                    InAppUpdate(),
+                    InAppUpdateManual(),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 0),
