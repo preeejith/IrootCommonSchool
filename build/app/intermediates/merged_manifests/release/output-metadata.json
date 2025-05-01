@@ -4,15 +4,15 @@
     "type": "MERGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.irootsp",
+  "applicationId": "com.irootsm",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 25,
-      "versionName": "1.0.25",
+      "versionCode": 26,
+      "versionName": "1.0.26",
       "outputFile": "AndroidManifest.xml"
     }
   ],

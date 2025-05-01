@@ -83,22 +83,23 @@ class MainBloc extends Bloc<MainEvents, MainState> {
       feeId = "";
       totalfeeamount = 0; // Initialize the totalfeeamount
       // Initialize an empty string for the fee headings
+      if (studentFeeListModel.feeDetails != null) {
+        for (int i = 0; i < studentFeeListModel.feeDetails!.length; i++) {
+          if (studentFeeListModel.feeDetails![i].checkboxvalue == true) {
+            // Add the fee value to the total
+            totalfeeamount += double.parse(
+                studentFeeListModel.feeDetails![i].feeValue.toString());
 
-      for (int i = 0; i < studentFeeListModel.feeDetails!.length; i++) {
-        if (studentFeeListModel.feeDetails![i].checkboxvalue == true) {
-          // Add the fee value to the total
-          totalfeeamount += double.parse(
-              studentFeeListModel.feeDetails![i].feeValue.toString());
-
-          // Concatenate the fee heading to the string (with a comma separator)
-          if (feeHeading.isNotEmpty) {
-            feeHeading += ","; // Add a comma between items
+            // Concatenate the fee heading to the string (with a comma separator)
+            if (feeHeading.isNotEmpty) {
+              feeHeading += ","; // Add a comma between items
+            }
+            feeHeading += studentFeeListModel.feeDetails![i].feeName.toString();
+            if (feeId.isNotEmpty) {
+              feeId += ",";
+            }
+            feeId += studentFeeListModel.feeDetails![i].feeId.toString();
           }
-          feeHeading += studentFeeListModel.feeDetails![i].feeName.toString();
-          if (feeId.isNotEmpty) {
-            feeId += ",";
-          }
-          feeId += studentFeeListModel.feeDetails![i].feeId.toString();
         }
       }
 
@@ -192,7 +193,7 @@ class MainBloc extends Bloc<MainEvents, MainState> {
         "paymentGatewayName": "atom"
       };
       preparePaymentRepsonseModel = PreparePaymentRepsonseModel.fromJson(
-          await ServerHelper.ohYespost('Paymet/PreapareInput', data, token));
+          await ServerHelper.ohYespost('Paymet/PreapareInput/', data, token));
       if (preparePaymentRepsonseModel.data != null) {
         emit(PaymentInputResSuccess());
       } else if (preparePaymentRepsonseModel.responseCode != "200") {

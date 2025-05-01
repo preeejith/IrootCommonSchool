@@ -132,7 +132,7 @@ class StudentData {
     termID = json['termID'];
     sectionID = json['sectionID'];
     schoolName = json['schoolName'];
-    newAddress = json['newAddress'];
+    // newAddress = json['newAddress'];
     currentYear = json['currentYear'];
     schoolLogo = json['schoolLogo'];
     studentName = json['studentName'];

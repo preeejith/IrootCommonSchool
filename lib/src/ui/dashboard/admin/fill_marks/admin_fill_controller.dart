@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 // import 'package:connectivity/connectivity.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -549,7 +550,7 @@ class AdminFillController extends GetxController {
 
           dataList.add(d);
         }
-
+        log(dataList.toString());
         http.Response response = await http.post(
           Uri.parse('${ApiUrls.baseUrl}${ApiUrls.saveFillMark}'),
           headers: {

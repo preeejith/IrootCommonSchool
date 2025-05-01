@@ -8,11 +8,11 @@ library;
 
 import 'package:iroots/bloc/blocserver/serverhelper.dart';
 
-const String baseUrlName = 'https://stpaulapi.lumensof.in/api/';
+const String baseUrlName = 'https://stmarysapi.lumensof.in/api/';
 const String baseUrlName2 = 'https://stmarysapi.lumensof.in/api';
-const String appName = "ST Paul's Secondary School";
-const String appBundle = "com.irootsp";
-const String myschoolauth = "stpaul_";
+const String appName = "ST.MARY'S HIGHER SECONDARY";
+const String appBundle = "com.irootsm";
+const String myschoolauth = "stmary_";
 
 // const String appIcon = "assets/images/logo.jpeg";
 const String appIcon = myschoolauth == "stmary_"
@@ -62,7 +62,7 @@ const String storageBucket = "stmarys-df49c.appspot.com";
 
 // const String baseUrlName = 'http://stmaryswilliamnagarapi.lumensof.in/api';
 // const String appName = "St. Mary's Sec School";
-// const String appBundle = "com.irootsp.st_mary";
+// const String appBundle = "com.irootsm.st_mary";
 // const String appIcon = "assets/images/stmary.jpeg";
 // const String slider1 = "assets/images/slider7.png";
 // const String slider2 = "assets/images/slider8.png";
@@ -77,7 +77,7 @@ const String storageBucket = "stmarys-df49c.appspot.com";
 //
 // const String baseUrlName = 'http://stthomasnorthaip.lumensof.in/api/';
 // const String appName = "ST.THOMAS HIGHER SECONDARY SCHOOL";
-// const String appBundle = "com.irootsp.st_thomas";
+// const String appBundle = "com.irootsm.st_thomas";
 // const String appIcon = "assets/images/thomas.jpeg";
 // const String slider1 = "assets/images/slider4.png";
 // const String slider2 = "assets/images/slider5.png";
@@ -93,7 +93,7 @@ const String storageBucket = "stmarys-df49c.appspot.com";
 // //
 // const String baseUrlName = 'http://stpaulapi.lumensof.in/api';
 // const String appName = "St. Paul's Secondary School";
-// const String appBundle = "com.irootsp";
+// const String appBundle = "com.irootsm";
 // const String appIcon = "assets/images/stpaul.jpeg";
 // const String slider1 = "assets/images/slider10.png";
 // const String slider2 = "assets/images/slider11.png";
@@ -127,7 +127,7 @@ const String storageBucket = "stmarys-df49c.appspot.com";
 
 // Change package Name
 
-// dart run change_app_package_name:main com.irootsp.st_thomas
+// dart run change_app_package_name:main com.irootsm.st_thomas
 
 
 /// Change Icon

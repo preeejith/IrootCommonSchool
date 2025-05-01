@@ -12,9 +12,9 @@
 
 // class _InAppUpdateState extends State<InAppUpdate> {
 //   final Uri _androidUrl = Uri.parse(
-//       'https://play.google.com/store/apps/details?id=com.irootsp');
+//       'https://play.google.com/store/apps/details?id=com.irootsm');
 //   final Uri _iosUrl = Uri.parse(
-//       'https://play.google.com/store/apps/details?id=com.irootsp');
+//       'https://play.google.com/store/apps/details?id=com.irootsm');
 
 //   Future<void> _launchStoreUrl() async {
 //     final url = Platform.isIOS ? _iosUrl : _androidUrl;
@@ -35,8 +35,8 @@
 //       showIgnore: false,
 //       showLater: false,
 //       messages: UpgraderMessages(
-//           // title: "Update ST Paul's Secondary School",
-//           // body: "ST Paul's Secondary School recommends that you update to the latest version",
+//           // title: "Update ST.MARY'S HIGHER SECONDARY",
+//           // body: "ST.MARY'S HIGHER SECONDARY recommends that you update to the latest version",
 //           // buttonTitleLater: 'No Thanks',
 //           // buttonTitleUpdate: 'Update Now',
 //           ),
@@ -72,7 +72,7 @@ class InAppUpdateManual extends StatefulWidget {
 class _InAppUpdateManualState extends State<InAppUpdateManual> {
   String latestversion = "0";
   final Uri _androidUrl =
-      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsp');
+      Uri.parse('https://play.google.com/store/apps/details?id=com.irootsm');
   final Uri _iosUrl = Uri.parse('https://apps.apple.com/app/idYOUR_APP_ID');
 
   @override

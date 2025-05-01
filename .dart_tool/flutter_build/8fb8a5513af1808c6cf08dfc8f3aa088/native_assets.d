@@ -1,0 +1,1 @@
+ /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/.dart_tool/flutter_build/8fb8a5513af1808c6cf08dfc8f3aa088/native_assets.yaml: 

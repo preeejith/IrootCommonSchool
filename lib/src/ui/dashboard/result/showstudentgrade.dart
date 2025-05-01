@@ -198,11 +198,17 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                               fontWeight: FontWeight.w500),
                                         ),
                                         Text(
-                                          _formatDate(context
+                                          context
                                               .read<MainBloc>()
                                               .studReportCardModel
                                               .studentData!
-                                              .dateOfBirth),
+                                              .dateOfBirth
+                                              .toString(),
+                                          // _formatDate(context
+                                          //     .read<MainBloc>()
+                                          //     .studReportCardModel
+                                          //     .studentData!
+                                          //     .dateOfBirth),
                                           style: TextStyle(
                                               color: Colors.blue,
                                               fontSize: 14,
@@ -277,7 +283,7 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                               fontWeight: FontWeight.w500),
                                         ),
                                         Text(
-                                          "12th",
+                                          "-",
                                           style: TextStyle(
                                               color: Colors.blue,
                                               fontSize: 14,
@@ -348,51 +354,50 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          "Attendance",
-                          style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 2.2,
-                                height: 40,
-                                color: const Color.fromARGB(255, 182, 236, 184),
-                                child: Center(child: Text("235 / 249 Days")),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 2.2,
-                                height: 40,
-                                color: Color(0xff9f7ccbe5),
-                                child: Center(child: Text("235 / 249 Days")),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(left: 10.0),
+                      //   child: Text(
+                      //     "Attendance",
+                      //     style: TextStyle(
+                      //         fontSize: 19, fontWeight: FontWeight.w600),
+                      //   ),
+                      // ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 8.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.center,
+                      //     children: [
+                      //       ClipRRect(
+                      //         borderRadius: BorderRadius.circular(5),
+                      //         child: Container(
+                      //           width: MediaQuery.of(context).size.width / 2.2,
+                      //           height: 40,
+                      //           color: const Color.fromARGB(255, 182, 236, 184),
+                      //           child: Center(child: Text("235 / 249 Days")),
+                      //         ),
+                      //       ),
+                      //       SizedBox(
+                      //         width: 8,
+                      //       ),
+                      //       ClipRRect(
+                      //         borderRadius: BorderRadius.circular(5),
+                      //         child: Container(
+                      //           width: MediaQuery.of(context).size.width / 2.2,
+                      //           height: 40,
+                      //           color: Color(0xff9f7ccbe5),
+                      //           child: Center(child: Text("235 / 249 Days")),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+
                       // context
                       //             .read<MainBloc>()
                       //             .adminExmPublishDetailsModel
                       //             .data ==
                       //         null
-                      //     ?
-
-                      //     Text("Result Not Published")
+                      //     ? Text("Result Not Published")
                       //     :
 
                       Column(
@@ -402,21 +407,15 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                               padding:
                                   const EdgeInsets.only(left: 10.0, top: 14),
                               child: context
-                                          .read<MainBloc>()
-                                          .studReportCardModel
-                                          .groupedSubjects ==
-                                      null
-                                  ? Text(
-                                      "Term 1",
-                                      style: TextStyle(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w600),
-                                    )
+                                      .read<MainBloc>()
+                                      .studReportCardModel
+                                      .groupedSubjects!
+                                      .isEmpty
+                                  ? SizedBox.shrink()
                                   : context
                                               .read<MainBloc>()
                                               .studReportCardModel
-                                              .groupedSubjects![0]
-                                              .terms ==
+                                              .groupedSubjects ==
                                           null
                                       ? Text(
                                           "Term 1",
@@ -424,18 +423,30 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                               fontSize: 19,
                                               fontWeight: FontWeight.w600),
                                         )
-                                      : Text(
-                                          context
-                                              .read<MainBloc>()
-                                              .studReportCardModel
-                                              .groupedSubjects![0]
-                                              .terms![0]
-                                              .name
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600),
-                                        )),
+                                      : context
+                                                  .read<MainBloc>()
+                                                  .studReportCardModel
+                                                  .groupedSubjects![0]
+                                                  .terms ==
+                                              null
+                                          ? Text(
+                                              "Term 1",
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600),
+                                            )
+                                          : Text(
+                                              context
+                                                  .read<MainBloc>()
+                                                  .studReportCardModel
+                                                  .groupedSubjects![0]
+                                                  .terms![0]
+                                                  .name
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600),
+                                            )),
                           _termsubdata(),
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0, top: 14),
@@ -454,46 +465,98 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                           .studReportCardModelunit2
                                           .groupedSubjects ==
                                       null
-                                  ? Text(
-                                      "Term 2",
-                                      style: TextStyle(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w600),
-                                    )
+                                  ? SizedBox.shrink()
                                   : context
-                                              .read<MainBloc>()
-                                              .studReportCardModelunit2
-                                              .groupedSubjects![0]
-                                              .terms ==
-                                          null
-                                      ? Text(
-                                          "Term 2",
-                                          style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600),
-                                        )
-                                      : Text(
-                                          context
-                                              .read<MainBloc>()
-                                              .studReportCardModelunit2
-                                              .groupedSubjects![0]
-                                              .terms![0]
-                                              .name
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600),
-                                        )),
-                          _termsubdataunit2(),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0, top: 14),
-                            child: Text(
-                              "Co-Scholastic Areas",
-                              style: TextStyle(
-                                  fontSize: 19, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          _termsubdataunit2coscholastic(),
+                                          .read<MainBloc>()
+                                          .studReportCardModelunit2
+                                          .groupedSubjects!
+                                          .isEmpty
+                                      ? SizedBox.shrink()
+                                      : context
+                                                  .read<MainBloc>()
+                                                  .studReportCardModelunit2
+                                                  .groupedSubjects ==
+                                              null
+                                          ? Text(
+                                              "Term 2",
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600),
+                                            )
+                                          : context
+                                                      .read<MainBloc>()
+                                                      .studReportCardModelunit2
+                                                      .groupedSubjects![0]
+                                                      .terms ==
+                                                  null
+                                              ? Text(
+                                                  "Term 2",
+                                                  style: TextStyle(
+                                                      fontSize: 19,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                )
+                                              : Text(
+                                                  context
+                                                      .read<MainBloc>()
+                                                      .studReportCardModelunit2
+                                                      .groupedSubjects![0]
+                                                      .terms![0]
+                                                      .name
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 19,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                )),
+                          context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit2
+                                      .groupedSubjects ==
+                                  null
+                              ? SizedBox.shrink()
+                              : context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit2
+                                      .groupedSubjects!
+                                      .isEmpty
+                                  ? SizedBox.shrink()
+                                  : _termsubdataunit2(),
+                          context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit2
+                                      .groupedSubjects ==
+                                  null
+                              ? SizedBox.shrink()
+                              : context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit2
+                                      .groupedSubjects!
+                                      .isEmpty
+                                  ? SizedBox.shrink()
+                                  : Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, top: 14),
+                                      child: Text(
+                                        "Co-Scholastic Areas",
+                                        style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                          context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit2
+                                      .groupedSubjects ==
+                                  null
+                              ? SizedBox.shrink()
+                              : context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit2
+                                      .groupedSubjects!
+                                      .isEmpty
+                                  ? SizedBox.shrink()
+                                  : _termsubdataunit2coscholastic(),
                           Padding(
                               padding:
                                   const EdgeInsets.only(left: 10.0, top: 14),
@@ -509,39 +572,89 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                           fontWeight: FontWeight.w600),
                                     )
                                   : context
-                                              .read<MainBloc>()
-                                              .studReportCardModelunit3
-                                              .groupedSubjects![0]
-                                              .terms ==
-                                          null
-                                      ? Text(
-                                          "Term 3",
-                                          style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600),
-                                        )
-                                      : Text(
-                                          context
-                                              .read<MainBloc>()
-                                              .studReportCardModelunit3
-                                              .groupedSubjects![0]
-                                              .terms![0]
-                                              .name
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600),
-                                        )),
-                          _termsubdataunit3(),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0, top: 14),
-                            child: Text(
-                              "Co-Scholastic Areas",
-                              style: TextStyle(
-                                  fontSize: 19, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          _termsubdataunit3cosholastic(),
+                                          .read<MainBloc>()
+                                          .studReportCardModelunit3
+                                          .groupedSubjects!
+                                          .isEmpty
+                                      ? SizedBox.shrink()
+                                      : context
+                                                  .read<MainBloc>()
+                                                  .studReportCardModelunit3
+                                                  .groupedSubjects![0]
+                                                  .terms ==
+                                              null
+                                          ? Text(
+                                              "Term 3",
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600),
+                                            )
+                                          : Text(
+                                              context
+                                                      .read<MainBloc>()
+                                                      .studReportCardModelunit3
+                                                      .groupedSubjects!
+                                                      .isEmpty
+                                                  ? ""
+                                                  : context
+                                                      .read<MainBloc>()
+                                                      .studReportCardModelunit3
+                                                      .groupedSubjects![0]
+                                                      .terms![0]
+                                                      .name
+                                                      .toString(),
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600),
+                                            )),
+                          context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit3
+                                      .groupedSubjects ==
+                                  null
+                              ? SizedBox.shrink()
+                              : context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit3
+                                      .groupedSubjects!
+                                      .isEmpty
+                                  ? SizedBox.shrink()
+                                  : _termsubdataunit3(),
+                          context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit3
+                                      .groupedSubjects ==
+                                  null
+                              ? SizedBox.shrink()
+                              : context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit3
+                                      .groupedSubjects!
+                                      .isEmpty
+                                  ? SizedBox.shrink()
+                                  : Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, top: 14),
+                                      child: Text(
+                                        "Co-Scholastic Areas",
+                                        style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                          context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit3
+                                      .groupedSubjects ==
+                                  null
+                              ? SizedBox.shrink()
+                              : context
+                                      .read<MainBloc>()
+                                      .studReportCardModelunit3
+                                      .groupedSubjects!
+                                      .isEmpty
+                                  ? SizedBox.shrink()
+                                  : _termsubdataunit3cosholastic(),
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 10.0, top: 14, bottom: 18),
@@ -658,7 +771,7 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                 //             .groupedSubjects![index]
                                 //             .terms![0]
                                 //             .name ==
-                                //         "UT I"
+                                //         "UnitTest-I"
                                 //     ? Text(
                                 //         "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].theoryMark}")
                                 //     : Text("-"),
@@ -668,7 +781,7 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                 //             .groupedSubjects![index]
                                 //             .terms![0]
                                 //             .name ==
-                                //         "UT I"
+                                //         "UnitTest-I"
                                 //     ? Text(
                                 //         "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark == 0 ? "-" : context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark}")
                                 //     : Text("-"),
@@ -678,7 +791,7 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                 //             .groupedSubjects![index]
                                 //             .terms![0]
                                 //             .name ==
-                                //         "UT I"
+                                //         "UnitTest-I"
                                 //     ? Text(
                                 //         "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].grade}/${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].totallMark}")
                                 //     : Text("-"),
@@ -769,96 +882,179 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
         return context.read<MainBloc>().studReportCardModel.groupedSubjects ==
                 null
             ? SizedBox.shrink()
-            : Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 60,
-                      color: const Color.fromARGB(255, 201, 196, 196),
-                      width: MediaQuery.of(context).size.width / 1,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Subject"),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width / 6.8,
-                            ),
-                            Column(
-                              children: [
-                                Text("Theory"),
-                                // Text("(100)"),
-                              ],
-                            ),
-                            // Text("Practical"),
-                            Column(
-                              children: [
-                                Text("Total"),
-                                context
-                                            .read<MainBloc>()
-                                            .studReportCardModel
-                                            .groupedSubjects![0]
-                                            .terms ==
-                                        null
-                                    ? Text("")
-                                    : Text("("
-                                        "${context.read<MainBloc>().studReportCardModel.groupedSubjects![0].terms![0].maximumMarks}"
-                                        ")")
-                              ],
-                            ),
-                            Text("Grade"),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Column(
+            : context
+                    .read<MainBloc>()
+                    .studReportCardModel
+                    .groupedSubjects!
+                    .isEmpty
+                ? SizedBox.shrink()
+                : Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
                       children: [
+                        Container(
+                          height: 60,
+                          color: const Color.fromARGB(255, 201, 196, 196),
+                          width: MediaQuery.of(context).size.width / 1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Subject"),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width / 6.8,
+                                ),
+                                Column(
+                                  children: [
+                                    Text("Theory"),
+                                    // Text("(100)"),
+                                  ],
+                                ),
+                                // Text("Practical"),
+                                Column(
+                                  children: [
+                                    Text("Total"),
+                                    context
+                                                .read<MainBloc>()
+                                                .studReportCardModel
+                                                .groupedSubjects![0]
+                                                .terms ==
+                                            null
+                                        ? Text("")
+                                        : Text("("
+                                            "${context.read<MainBloc>().studReportCardModel.groupedSubjects![0].terms![0].maximumMarks}"
+                                            ")")
+                                  ],
+                                ),
+                                Text("Grade"),
+                              ],
+                            ),
+                          ),
+                        ),
                         Column(
-                          children: List.generate(
-                              context
-                                  .read<MainBloc>()
-                                  .studReportCardModel
-                                  .groupedSubjects!
-                                  .length, (index) {
-                            term1therorytotalmark = context
-                                .read<MainBloc>()
-                                .studReportCardModel
-                                .groupedSubjects!
-                                .map((subject) =>
-                                    subject.terms![0].theoryMark ?? 0)
-                                .reduce((a, b) => a + b);
+                          children: [
+                            Column(
+                              children: List.generate(
+                                  context
+                                      .read<MainBloc>()
+                                      .studReportCardModel
+                                      .groupedSubjects!
+                                      .length, (index) {
+                                term1therorytotalmark = context
+                                    .read<MainBloc>()
+                                    .studReportCardModel
+                                    .groupedSubjects!
+                                    .map((subject) =>
+                                        subject.terms![0].theoryMark ?? 0)
+                                    .reduce((a, b) => a + b);
 
-                            // Get the obtained percentage
-                            final obtainedPercentage = context
-                                .read<MainBloc>()
-                                .studReportCardModel
-                                .obtainedPercent;
+                                // Get the obtained percentage
+                                final obtainedPercentage = context
+                                    .read<MainBloc>()
+                                    .studReportCardModel
+                                    .obtainedPercent;
 
 // Get the grading criteria list
-                            final gradingCriteria = context
-                                .read<MainBloc>()
-                                .studReportCardModel
-                                .gradingCriteria;
+                                final gradingCriteria = context
+                                    .read<MainBloc>()
+                                    .studReportCardModel
+                                    .gradingCriteria;
 
 // Find the matching grade
-                            gradeInfo = gradingCriteria!.firstWhere(
-                              (criteria) =>
-                                  obtainedPercentage! >=
-                                      (criteria.minimumPercentage ?? 0) &&
-                                  obtainedPercentage <=
-                                      (criteria.maximumPercentage ?? 100),
-                              orElse: () => GradingCriteria(
-                                  grade: "N/A",
-                                  gradeDescription: "Not Available"),
-                            );
-                            return Container(
+                                gradeInfo = gradingCriteria!.firstWhere(
+                                  (criteria) =>
+                                      obtainedPercentage! >=
+                                          (criteria.minimumPercentage ?? 0) &&
+                                      obtainedPercentage <=
+                                          (criteria.maximumPercentage ?? 100),
+                                  orElse: () => GradingCriteria(
+                                      grade: "N/A",
+                                      gradeDescription: "Not Available"),
+                                );
+                                return Container(
+                                  height: 35,
+                                  color: index % 2 != 0
+                                      ? const Color.fromARGB(255, 201, 196, 196)
+                                      : const Color.fromARGB(
+                                          255, 234, 225, 225),
+                                  width: MediaQuery.of(context).size.width / 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              3,
+                                          child: Text(
+                                            context
+                                                .read<MainBloc>()
+                                                .studReportCardModel
+                                                .groupedSubjects![index]
+                                                .subjectName
+                                                .toString(),
+                                            maxLines: 2,
+                                          ),
+                                        ),
+                                        context
+                                                    .read<MainBloc>()
+                                                    .studReportCardModel
+                                                    .groupedSubjects![index]
+                                                    .terms![0]
+                                                    .name ==
+                                                "UT I"
+                                            ? Text(
+                                                "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].theoryMark}")
+                                            : Text("-"),
+                                        context
+                                                    .read<MainBloc>()
+                                                    .studReportCardModel
+                                                    .groupedSubjects![index]
+                                                    .terms![0]
+                                                    .name ==
+                                                "UT I"
+                                            ? Text(
+                                                "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark == 0 ? "-" : context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark}")
+                                            : Text("-"),
+                                        context
+                                                    .read<MainBloc>()
+                                                    .studReportCardModel
+                                                    .groupedSubjects![index]
+                                                    .terms![0]
+                                                    .name ==
+                                                "UT I"
+                                            ? Text(
+                                                "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].totallMark}")
+                                            : Text("-"),
+                                        context
+                                                    .read<MainBloc>()
+                                                    .studReportCardModel
+                                                    .groupedSubjects![index]
+                                                    .terms![0]
+                                                    .name ==
+                                                "UT I"
+                                            ? Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 6.0),
+                                                child: Text(
+                                                    "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].grade}"),
+                                              )
+                                            : Text("-"),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ),
+                            Container(
                               height: 35,
-                              color: index % 2 != 0
-                                  ? const Color.fromARGB(255, 201, 196, 196)
-                                  : const Color.fromARGB(255, 234, 225, 225),
+                              color: const Color.fromARGB(255, 201, 196, 196),
                               width: MediaQuery.of(context).size.width / 1,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -870,186 +1066,117 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                       width:
                                           MediaQuery.of(context).size.width / 3,
                                       child: Text(
-                                        context
-                                            .read<MainBloc>()
-                                            .studReportCardModel
-                                            .groupedSubjects![index]
-                                            .subjectName
-                                            .toString(),
+                                        "Total ",
                                         maxLines: 2,
                                       ),
                                     ),
-                                    context
-                                                .read<MainBloc>()
-                                                .studReportCardModel
-                                                .groupedSubjects![index]
-                                                .terms![0]
-                                                .name ==
-                                            "UT I"
-                                        ? Text(
-                                            "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].theoryMark}")
-                                        : Text("-"),
-                                    // context
-                                    //             .read<MainBloc>()
-                                    //             .studReportCardModel
-                                    //             .groupedSubjects![index]
-                                    //             .terms![0]
-                                    //             .name ==
-                                    //         "UT I"
-                                    //     ? Text(
-                                    //         "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark == 0 ? "-" : context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark}")
-                                    //     : Text("-"),
-                                    context
-                                                .read<MainBloc>()
-                                                .studReportCardModel
-                                                .groupedSubjects![index]
-                                                .terms![0]
-                                                .name ==
-                                            "UT I"
-                                        ? Text(
-                                            "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].totallMark}")
-                                        : Text("-"),
-                                    context
-                                                .read<MainBloc>()
-                                                .studReportCardModel
-                                                .groupedSubjects![index]
-                                                .terms![0]
-                                                .name ==
-                                            "UT I"
-                                        ? Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 6.0),
-                                            child: Text(
-                                                "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].grade}"),
-                                          )
-                                        : Text("-"),
+                                    Text(term1therorytotalmark.toString()),
+                                    Text(term1therorytotalmark.toString()),
+                                    Text('${gradeInfo.grade} ')
                                   ],
                                 ),
                               ),
-                            );
-                          }),
-                        ),
-                        Container(
-                          height: 35,
-                          color: const Color.fromARGB(255, 201, 196, 196),
-                          width: MediaQuery.of(context).size.width / 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  child: Text(
-                                    "Total ",
-                                    maxLines: 2,
-                                  ),
-                                ),
-                                Text(term1therorytotalmark.toString()),
-                                Text(term1therorytotalmark.toString()),
-                                Text('${gradeInfo.grade} ')
-                              ],
                             ),
-                          ),
-                        ),
-                        Container(
-                          height: 35,
-                          color: const Color.fromARGB(255, 201, 196, 196),
-                          width: MediaQuery.of(context).size.width / 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  child: Text(
-                                    "Percentage",
-                                    maxLines: 2,
-                                  ),
+                            Container(
+                              height: 35,
+                              color: const Color.fromARGB(255, 201, 196, 196),
+                              width: MediaQuery.of(context).size.width / 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width:
+                                          MediaQuery.of(context).size.width / 3,
+                                      child: Text(
+                                        "Percentage",
+                                        maxLines: 2,
+                                      ),
+                                    ),
+                                    Text(
+                                        "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
+                                    Text(
+                                        "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
+                                    Text(' ')
+                                  ],
                                 ),
-                                Text(
-                                    "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
-                                Text(
-                                    "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
-                                Text(' ')
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
+                        // Container(
+                        //   height: 35,
+                        //   color: const Color.fromARGB(255, 201, 196, 196),
+                        //   width: MediaQuery.of(context).size.width / 1,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(8.0),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //       children: [
+                        //         Text("English"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        // Container(
+                        //   height: 35,
+                        //   color: const Color.fromARGB(255, 234, 225, 225),
+                        //   width: MediaQuery.of(context).size.width / 1,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(8.0),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //       children: [
+                        //         Text("English"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        // Container(
+                        //   height: 35,
+                        //   color: const Color.fromARGB(255, 201, 196, 196),
+                        //   width: MediaQuery.of(context).size.width / 1,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(8.0),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //       children: [
+                        //         Text("English"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        // Container(
+                        //   height: 35,
+                        //   color: const Color.fromARGB(255, 234, 225, 225),
+                        //   width: MediaQuery.of(context).size.width / 1,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(8.0),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //       children: [
+                        //         Text("English"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //         Text("A/90"),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
-                    // Container(
-                    //   height: 35,
-                    //   color: const Color.fromARGB(255, 201, 196, 196),
-                    //   width: MediaQuery.of(context).size.width / 1,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //       children: [
-                    //         Text("English"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                    // Container(
-                    //   height: 35,
-                    //   color: const Color.fromARGB(255, 234, 225, 225),
-                    //   width: MediaQuery.of(context).size.width / 1,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //       children: [
-                    //         Text("English"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                    // Container(
-                    //   height: 35,
-                    //   color: const Color.fromARGB(255, 201, 196, 196),
-                    //   width: MediaQuery.of(context).size.width / 1,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //       children: [
-                    //         Text("English"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                    // Container(
-                    //   height: 35,
-                    //   color: const Color.fromARGB(255, 234, 225, 225),
-                    //   width: MediaQuery.of(context).size.width / 1,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //       children: [
-                    //         Text("English"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //         Text("A/90"),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-              );
+                  );
       },
     );
   }
@@ -1236,15 +1363,21 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                               children: [
                                 Text("Total"),
                                 context
-                                            .read<MainBloc>()
-                                            .studReportCardModelunit2
-                                            .groupedSubjects![0]
-                                            .terms ==
-                                        null
-                                    ? Text("")
-                                    : Text("("
-                                        "${context.read<MainBloc>().studReportCardModelunit2.groupedSubjects![0].terms![0].maximumMarks}"
-                                        ")"),
+                                        .read<MainBloc>()
+                                        .studReportCardModelunit2
+                                        .groupedSubjects!
+                                        .isEmpty
+                                    ? SizedBox.shrink()
+                                    : context
+                                                .read<MainBloc>()
+                                                .studReportCardModelunit2
+                                                .groupedSubjects![0]
+                                                .terms ==
+                                            null
+                                        ? Text("")
+                                        : Text("("
+                                            "${context.read<MainBloc>().studReportCardModelunit2.groupedSubjects![0].terms![0].maximumMarks}"
+                                            ")"),
                               ],
                             ),
                             Text("Grade"),
@@ -1327,23 +1460,29 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                         ? Text(
                                             "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].theoryMark}")
                                         : Text("-"),
-                                // context
-                                //         .read<MainBloc>()
-                                //         .studReportCardModelunit2
-                                //         .groupedSubjects![index]
-                                //         .terms!
-                                //         .isEmpty
-                                //     ? Text("-")
-                                //     : context
-                                //                 .read<MainBloc>()
-                                //                 .studReportCardModelunit2
-                                //                 .groupedSubjects![index]
-                                //                 .terms![0]
-                                //                 .name ==
-                                //             "UT II"
-                                //         ? Text(
-                                //             "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark == 0 ? "-" : context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark}")
-                                //         : Text("-"),
+                                context
+                                        .read<MainBloc>()
+                                        .studReportCardModelunit2
+                                        .groupedSubjects!
+                                        .isEmpty
+                                    ? SizedBox.shrink()
+                                    : context
+                                            .read<MainBloc>()
+                                            .studReportCardModelunit2
+                                            .groupedSubjects![index]
+                                            .terms!
+                                            .isEmpty
+                                        ? Text("-")
+                                        : context
+                                                    .read<MainBloc>()
+                                                    .studReportCardModelunit2
+                                                    .groupedSubjects![index]
+                                                    .terms![0]
+                                                    .name ==
+                                                "UT II"
+                                            ? Text(
+                                                "${context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark == 0 ? "-" : context.read<MainBloc>().studReportCardModel.groupedSubjects![index].terms![0].practicalMark}")
+                                            : Text("-"),
                                 context
                                         .read<MainBloc>()
                                         .studReportCardModelunit2
@@ -1623,30 +1762,42 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                   children: [
                                     Text("Practical"),
                                     context
-                                                .read<MainBloc>()
-                                                .studReportCardModelunit3
-                                                .groupedSubjects![0]
-                                                .terms ==
-                                            null
+                                            .read<MainBloc>()
+                                            .studReportCardModelunit3
+                                            .groupedSubjects!
+                                            .isEmpty
                                         ? Text("")
-                                        : Text("("
-                                            "${context.read<MainBloc>().studReportCardModelunit3.groupedSubjects![0].terms![0].maximumMarks}"
-                                            ")"),
+                                        : context
+                                                    .read<MainBloc>()
+                                                    .studReportCardModelunit3
+                                                    .groupedSubjects![0]
+                                                    .terms ==
+                                                null
+                                            ? Text("")
+                                            : Text("("
+                                                "${context.read<MainBloc>().studReportCardModelunit3.groupedSubjects![0].terms![0].maximumMarks}"
+                                                ")"),
                                   ],
                                 ),
                                 Column(
                                   children: [
                                     Text("Total"),
                                     context
-                                                .read<MainBloc>()
-                                                .studReportCardModelunit3
-                                                .groupedSubjects![0]
-                                                .terms ==
-                                            null
+                                            .read<MainBloc>()
+                                            .studReportCardModelunit3
+                                            .groupedSubjects!
+                                            .isEmpty
                                         ? Text("")
-                                        : Text("("
-                                            "${context.read<MainBloc>().studReportCardModelunit3.groupedSubjects![0].terms![0].maximumMarks}"
-                                            ")"),
+                                        : context
+                                                    .read<MainBloc>()
+                                                    .studReportCardModelunit3
+                                                    .groupedSubjects![0]
+                                                    .terms ==
+                                                null
+                                            ? Text("")
+                                            : Text("("
+                                                "${context.read<MainBloc>().studReportCardModelunit3.groupedSubjects![0].terms![0].maximumMarks}"
+                                                ")"),
                                   ],
                                 ),
                                 Text("Grade"),

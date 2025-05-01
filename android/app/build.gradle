@@ -33,7 +33,7 @@
 // apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 // android {
-//     namespace "com.irootsp"
+//     namespace "com.irootsm"
 //     compileSdkVersion 33
 //     ndkVersion flutter.ndkVersion
     
@@ -52,7 +52,7 @@
 //     }
 
 //     defaultConfig {
-//         applicationId "com.irootsp"
+//         applicationId "com.irootsm"
 //         minSdkVersion 23
 //         targetSdkVersion 34
 //         versionCode flutterVersionCode.toInteger()
@@ -127,7 +127,7 @@ apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "com.irootsp"  // ✅ Ensure namespace is set to avoid build failure
+    namespace "com.irootsm"  // ✅ Ensure namespace is set to avoid build failure
     compileSdkVersion 35  // ✅ Updated to latest SDK version
 
     ndkVersion localProperties.getProperty('flutter.ndkVersion', '25.1.8937393') // ✅ Safe fallback NDK version
@@ -147,7 +147,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.irootsp"
+        applicationId "com.irootsm"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion 34
         versionCode flutterVersionCode

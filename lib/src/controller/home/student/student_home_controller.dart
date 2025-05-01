@@ -142,7 +142,7 @@ class StudentHomeController extends GetxController {
 //studentdatafetch
   Future<void> fetchStudentDetails() async {
     _showProgress();
-    namestudent = await PrefManager.getName();
+    // namestudent = await PrefManager.getName();
     try {
       String? sstudntId = "";
       String? classsId = "";
