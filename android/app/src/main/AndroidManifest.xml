@@ -15,7 +15,7 @@
     <application
         android:name="${applicationName}"
     
-      android:icon="@mipmap/launcher_icon"
+          android:icon="@mipmap/launcher_icon"
         android:label="ST.MARY'S HIGHER SECONDARY"
         android:usesCleartextTraffic="true">
         <activity

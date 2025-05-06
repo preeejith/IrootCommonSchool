@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.irootsm"
-4    android:versionCode="26"
-5    android:versionName="1.0.26" >
+4    android:versionCode="27"
+5    android:versionName="1.0.27" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
@@ -70,10 +70,10 @@
 40        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 40-->[androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 41        android:extractNativeLibs="true"
-42        android:icon="@mipmap/launcher_icon"
-42-->/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:18:7-43
-43        android:label="ST.MARY&apos;S HIGHER SECONDARY"
-43-->/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:19:9-51
+42        android:icon="@mipmap/ic_launcher"
+42-->/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:18:11-45
+43        android:label="St.mary&apos;s sec school"
+43-->/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:19:9-45
 44        android:usesCleartextTraffic="true" >
 44-->/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/AndroidManifest.xml:20:9-44
 45        <activity

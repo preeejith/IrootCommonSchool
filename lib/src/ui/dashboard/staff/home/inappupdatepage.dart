@@ -125,7 +125,7 @@ class _InAppUpdateManualState extends State<InAppUpdateManual> {
         actions: [
           TextButton(
             onPressed: () {
-              _launchStoreUrl;
+              _launchStoreUrl();
               Navigator.pop(context);
             },
             child: const Text("Update Now"),

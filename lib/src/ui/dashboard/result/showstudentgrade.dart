@@ -407,27 +407,21 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                               padding:
                                   const EdgeInsets.only(left: 10.0, top: 14),
                               child: context
-                                      .read<MainBloc>()
-                                      .studReportCardModel
-                                      .groupedSubjects!
-                                      .isEmpty
+                                          .read<MainBloc>()
+                                          .studReportCardModel
+                                          .groupedSubjects ==
+                                      null
                                   ? SizedBox.shrink()
                                   : context
-                                              .read<MainBloc>()
-                                              .studReportCardModel
-                                              .groupedSubjects ==
-                                          null
-                                      ? Text(
-                                          "Term 1",
-                                          style: TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600),
-                                        )
+                                          .read<MainBloc>()
+                                          .studReportCardModel
+                                          .groupedSubjects!
+                                          .isEmpty
+                                      ? SizedBox.shrink()
                                       : context
                                                   .read<MainBloc>()
                                                   .studReportCardModel
-                                                  .groupedSubjects![0]
-                                                  .terms ==
+                                                  .groupedSubjects ==
                                               null
                                           ? Text(
                                               "Term 1",
@@ -435,18 +429,32 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                                   fontSize: 19,
                                                   fontWeight: FontWeight.w600),
                                             )
-                                          : Text(
-                                              context
-                                                  .read<MainBloc>()
-                                                  .studReportCardModel
-                                                  .groupedSubjects![0]
-                                                  .terms![0]
-                                                  .name
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontSize: 19,
-                                                  fontWeight: FontWeight.w600),
-                                            )),
+                                          : context
+                                                      .read<MainBloc>()
+                                                      .studReportCardModel
+                                                      .groupedSubjects![0]
+                                                      .terms ==
+                                                  null
+                                              ? Text(
+                                                  "Term 1",
+                                                  style: TextStyle(
+                                                      fontSize: 19,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                )
+                                              : Text(
+                                                  context
+                                                      .read<MainBloc>()
+                                                      .studReportCardModel
+                                                      .groupedSubjects![0]
+                                                      .terms![0]
+                                                      .name
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 19,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                )),
                           _termsubdata(),
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0, top: 14),
@@ -1099,7 +1107,34 @@ class _StudentGradeCardState extends State<StudentGradeCard> {
                                         "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
                                     Text(
                                         "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
-                                    Text(' ')
+                                    Text('${gradeInfo.grade} ')
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 35,
+                              color: const Color.fromARGB(255, 165, 150, 150),
+                              width: MediaQuery.of(context).size.width / 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width:
+                                          MediaQuery.of(context).size.width / 3,
+                                      child: Text(
+                                        "Result",
+                                        maxLines: 2,
+                                      ),
+                                    ),
+                                    Text(
+                                        "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
+                                    Text(
+                                        "${context.read<MainBloc>().studReportCardModel.obtainedPercent}%"),
+                                    Text('${gradeInfo.grade} ')
                                   ],
                                 ),
                               ),
