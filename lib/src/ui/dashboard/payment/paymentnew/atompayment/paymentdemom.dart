@@ -597,7 +597,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "2222",
+                                  state.message.toString(),
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600),
