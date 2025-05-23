@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsm.app-mergeDebugResources-55:/values-pl/values-pl.xml",
+            "outputFile": "com.irootsp.app-mergeDebugResources-55:/values-pl/values-pl.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/c1cff28a8a5d2e105d47f3808f007221/transformed/preference-1.2.1/res/values-pl/values-pl.xml",

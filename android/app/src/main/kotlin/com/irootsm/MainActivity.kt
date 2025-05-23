@@ -1,4 +1,4 @@
-package com.irootsm
+package com.irootsp
 
 import io.flutter.embedding.android.FlutterActivity
 

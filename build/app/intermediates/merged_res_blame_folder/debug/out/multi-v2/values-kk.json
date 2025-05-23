@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsm.app-mergeDebugResources-55:/values-kk/values-kk.xml",
+            "outputFile": "com.irootsp.app-mergeDebugResources-55:/values-kk/values-kk.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/.gradle/caches/transforms-4/0c6becca03b65eb27365a103ee33b2f3/transformed/jetified-play-services-base-18.5.0/res/values-kk/values.xml",

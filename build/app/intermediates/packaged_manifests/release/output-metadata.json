@@ -4,15 +4,15 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.irootsm",
+  "applicationId": "com.irootsp",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 27,
-      "versionName": "1.0.27",
+      "versionCode": 28,
+      "versionName": "1.0.28",
       "outputFile": "AndroidManifest.xml"
     }
   ],

@@ -1,4 +1,4 @@
-com.irootsm
+com.irootsp
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -1147,7 +1147,9 @@ layout support_simple_spinner_dropdown_item
 layout toast_custom
 menu menu_main
 mipmap ic_launcher
-mipmap launcher_icon
+mipmap ic_launcher_background
+mipmap ic_launcher_foreground
+mipmap ic_launcher_monochrome
 raw firebase_common_keep
 string abc_action_bar_home_description
 string abc_action_bar_up_description

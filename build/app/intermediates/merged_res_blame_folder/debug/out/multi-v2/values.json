@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.irootsm.app-mergeDebugResources-55:/values/values.xml",
+            "outputFile": "com.irootsp.app-mergeDebugResources-55:/values/values.xml",
             "map": [
                 {
                     "source": "/Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/android/app/src/main/res/values/styles.xml",

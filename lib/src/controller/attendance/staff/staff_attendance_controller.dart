@@ -131,7 +131,7 @@ class StaffAttendanceController extends GetxController {
 
             ),
         // "${baseUrlName}Attendance/EditStudentAttendance"),
-        //https://stmarysapi.lumensof.in/api/Student/GetStudentDetailsByClassSection?ClassId=615&SectionId=23
+        //https://stpaulapi.lumensof.in/api/Student/GetStudentDetailsByClassSection?ClassId=615&SectionId=23
         // "${baseUrlName}Student/GetStudentDetailsByClassSection?ClassId=615&SectionId=23"),
         headers: {
           'Content-Type': 'application/json',

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.irootsm"
-    android:versionCode="27"
-    android:versionName="1.0.27" >
+    package="com.irootsp"
+    android:versionCode="28"
+    android:versionName="1.0.28" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -33,10 +33,10 @@
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
 
     <permission
-        android:name="com.irootsm.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.irootsp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.irootsm.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Notification -->
+    <uses-permission android:name="com.irootsp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Notification -->
     <!-- android:icon="@mipmap/launcher_icon" -->
     <!-- stmary -->
     <application
@@ -44,11 +44,11 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="true"
-        android:icon="@mipmap/launcher_icon"
-        android:label="ST.MARY&apos;S HIGHER SECONDARY"
+        android:icon="@mipmap/ic_launcher"
+        android:label="ST Paul&apos;s Secondary School"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name="com.irootsm.MainActivity"
+            android:name="com.irootsp.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -183,7 +183,7 @@
 
         <provider
             android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
-            android:authorities="com.irootsm.flutterfirebasemessaginginitprovider"
+            android:authorities="com.irootsp.flutterfirebasemessaginginitprovider"
             android:exported="false"
             android:initOrder="99" />
 
@@ -240,7 +240,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.irootsm.androidx-startup"
+            android:authorities="com.irootsp.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
@@ -280,7 +280,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.irootsm.firebaseinitprovider"
+            android:authorities="com.irootsp.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />

@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.irootsm"
-4    android:versionCode="27"
-5    android:versionName="1.0.27" >
+3    package="com.irootsp"
+4    android:versionCode="28"
+5    android:versionName="1.0.28" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
@@ -58,12 +58,12 @@
 34
 35    <permission
 35-->[androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
-36        android:name="com.irootsm.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+36        android:name="com.irootsp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
 36-->[androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
 37        android:protectionLevel="signature" />
 37-->[androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
 38
-39    <uses-permission android:name="com.irootsm.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Notification -->
+39    <uses-permission android:name="com.irootsp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Notification -->
 39-->[androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
 39-->[androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
 40    <!-- android:icon="@mipmap/launcher_icon" -->
@@ -74,11 +74,11 @@
 44-->[androidx.core:core:1.13.1] /Users/ohyes/.gradle/caches/transforms-4/b1a2409239effc3b5a7534e9531df9c4/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 45        android:debuggable="true"
 46        android:extractNativeLibs="true"
-47        android:icon="@mipmap/launcher_icon"
-48        android:label="ST.MARY&apos;S HIGHER SECONDARY"
+47        android:icon="@mipmap/ic_launcher"
+48        android:label="ST Paul&apos;s Secondary School"
 49        android:usesCleartextTraffic="true" >
 50        <activity
-51            android:name="com.irootsm.MainActivity"
+51            android:name="com.irootsp.MainActivity"
 52            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
 53            android:exported="true"
 54            android:hardwareAccelerated="true"
@@ -278,7 +278,7 @@
 184-->[:firebase_messaging] /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:41:9-45:38
 185            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
 185-->[:firebase_messaging] /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:42:13-102
-186            android:authorities="com.irootsm.flutterfirebasemessaginginitprovider"
+186            android:authorities="com.irootsp.flutterfirebasemessaginginitprovider"
 186-->[:firebase_messaging] /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:43:13-88
 187            android:exported="false"
 187-->[:firebase_messaging] /Users/ohyes/Documents/lroots/IrootSchool/Lumen-App/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:44:13-37
@@ -385,7 +385,7 @@
 241-->[androidx.emoji2:emoji2:1.2.0] /Users/ohyes/.gradle/caches/transforms-4/bd138ca964a06586a0835036549b724a/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
 242            android:name="androidx.startup.InitializationProvider"
 242-->[androidx.emoji2:emoji2:1.2.0] /Users/ohyes/.gradle/caches/transforms-4/bd138ca964a06586a0835036549b724a/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
-243            android:authorities="com.irootsm.androidx-startup"
+243            android:authorities="com.irootsp.androidx-startup"
 243-->[androidx.emoji2:emoji2:1.2.0] /Users/ohyes/.gradle/caches/transforms-4/bd138ca964a06586a0835036549b724a/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
 244            android:exported="false" >
 244-->[androidx.emoji2:emoji2:1.2.0] /Users/ohyes/.gradle/caches/transforms-4/bd138ca964a06586a0835036549b724a/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
@@ -455,7 +455,7 @@
 281-->[com.google.firebase:firebase-common:21.0.0] /Users/ohyes/.gradle/caches/transforms-4/f550e15f25eb6a01e2d27a4d74b091d2/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
 282            android:name="com.google.firebase.provider.FirebaseInitProvider"
 282-->[com.google.firebase:firebase-common:21.0.0] /Users/ohyes/.gradle/caches/transforms-4/f550e15f25eb6a01e2d27a4d74b091d2/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:24:13-77
-283            android:authorities="com.irootsm.firebaseinitprovider"
+283            android:authorities="com.irootsp.firebaseinitprovider"
 283-->[com.google.firebase:firebase-common:21.0.0] /Users/ohyes/.gradle/caches/transforms-4/f550e15f25eb6a01e2d27a4d74b091d2/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:25:13-72
 284            android:directBootAware="true"
 284-->[com.google.firebase:firebase-common:21.0.0] /Users/ohyes/.gradle/caches/transforms-4/f550e15f25eb6a01e2d27a4d74b091d2/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:26:13-43
