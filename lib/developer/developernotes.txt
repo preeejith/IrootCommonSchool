@@ -1,0 +1,31 @@
+###important things that need to look when changing to one build to another
+##chnage the package name
+##change the slide pages
+##change the all baseurls
+##chnage the payment gateway things
+##change the logos 
+###chnage the Name Every where
+##chnage app icon
+##
+##url
+## stmarys####
+# urls  -- https://nirmalaapi.lumensof.in/api/  (replace it)
+#package name  -- com.iroots.iroots (replace it)
+# logos
+#slider 
+#const String myschoolauth = "stmary_"; chnage in the app_data page
+#splash screen
+#appicon
+${ServerHelper.baseUrl} common check url 
+#  //payment in serverhelper
+
+##stpaul####
+# urls  -- https://nirmalaapi.lumensof.in/api/  (replace it)
+#package name  -- com.iroots.iroots (replace it)
+# logos
+#slider 
+#const String myschoolauth = "stmary_"; chnage in the app_data page
+#splash screen
+#appicon
+${ServerHelper.baseUrl} common check url 
+//adminattendance
