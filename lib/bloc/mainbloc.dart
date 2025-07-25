@@ -701,8 +701,8 @@ class MainBloc extends Bloc<MainEvents, MainState> {
       log('Student/GetStudnetSummeryBatchWise?StudentId=${event.studnetId}&BatchId=${event.batchId}');
       academicProfileInfoModel =
           AcademicProfileInfoModel.fromJson(await ServerHelper.get(
-        // 'Student/GetStudnetSummeryBatchWise?StudentId=1937&BatchId=21',
-        'Student/GetStudnetSummeryBatchWise?StudentId=${event.studnetId}&BatchId=${event.batchId}',
+        'Student/GetStudnetSummeryBatchWise?StudentId=1937&BatchId=21',
+        // 'Student/GetStudnetSummeryBatchWise?StudentId=${event.studnetId}&BatchId=${event.batchId}',
       ));
 
       if (academicProfileInfoModel.data != null) {
