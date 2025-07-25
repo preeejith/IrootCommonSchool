@@ -14,7 +14,7 @@
 <!-- stmary -->
     <application
         android:name="${applicationName}"
-    
+   
                android:icon="@mipmap/ic_launcher"
         android:label="Nirmala Convent School Ujjain"
         android:usesCleartextTraffic="true">

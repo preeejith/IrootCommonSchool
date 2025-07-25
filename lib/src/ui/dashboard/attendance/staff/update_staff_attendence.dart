@@ -184,9 +184,9 @@ class UpdateStaffAttendanceScreen extends StatelessWidget {
                                     return DataTable(
                                       border: TableBorder.all(),
                                       columns: List<DataColumn>.generate(
-                                        10,
+                                        8,
                                         (index) => DataColumn(
-                                            label: index == 5
+                                            label: index == 3
                                                 ? IconButton(
                                                     onPressed: () {
                                                       logic
@@ -204,7 +204,7 @@ class UpdateStaffAttendanceScreen extends StatelessWidget {
                                                     color:
                                                         ConstClass.themeColor,
                                                   )
-                                                : index == 7
+                                                : index == 5
                                                     ? IconButton(
                                                         onPressed: () {
                                                           logic
@@ -222,7 +222,7 @@ class UpdateStaffAttendanceScreen extends StatelessWidget {
                                                         color: ConstClass
                                                             .themeColor,
                                                       )
-                                                    : index == 9
+                                                    : index == 7
                                                         ? IconButton(
                                                             onPressed: () {
                                                               logic
@@ -265,8 +265,8 @@ class UpdateStaffAttendanceScreen extends StatelessWidget {
                                                   cells: [
                                                     datacell("${index + 1}"),
                                                     datacell(item.studentName),
-                                                    datacell(item.className),
-                                                    datacell(item.sectionName),
+                                                    // datacell(item.className),
+                                                    // datacell(item.sectionName),
                                                     datacell("A"),
                                                     DataCell(IconButton(
                                                       onPressed: () {
@@ -405,21 +405,21 @@ class UpdateStaffAttendanceScreen extends StatelessWidget {
         return 'S.no';
       case 1:
         return 'Student Name';
+      // case 2:
+      //   return 'Class';
+      // case 3:
+      //   return 'Section';
       case 2:
-        return 'Class';
-      case 3:
-        return 'Section';
-      case 4:
         return 'Mark Full Day Present';
+      case 3:
+        return '';
+      case 4:
+        return 'Mark Half Day Present';
       case 5:
         return '';
       case 6:
-        return 'Mark Half Day Present';
-      case 7:
-        return '';
-      case 8:
         return 'Other';
-      case 9:
+      case 7:
         return '';
       default:
         return '';

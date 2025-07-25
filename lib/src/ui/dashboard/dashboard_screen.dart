@@ -495,14 +495,19 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:iroots/bloc/mainbloc.dart';
 import 'package:iroots/common/app_data.dart';
 import 'package:iroots/src/controller/dashboard/dashBoard_controller.dart';
 import 'package:iroots/src/ui/comingSoonDummyPage.dart';
 import 'package:iroots/src/ui/dashboard/attendance/admin/admin_attendence.dart';
 
 import 'package:iroots/src/ui/dashboard/admin/home/admin_home_screen.dart';
+import 'package:iroots/src/ui/dashboard/attendance/staff/studentprofilelist/adminstudentprofilelist.dart';
+import 'package:iroots/src/ui/dashboard/attendance/staff/studentprofilelist/studentownprofile.dart';
+import 'package:iroots/src/ui/dashboard/attendance/staff/studentprofilelist/studentprofilelist.dart';
 import 'package:iroots/src/ui/dashboard/maindashboardscreen.dart';
 import 'package:iroots/src/ui/dashboard/student/home/student_home_screen.dart';
 import 'package:iroots/src/ui/dashboard/homework/admin/admin_homework.dart';
@@ -788,24 +793,81 @@ class _DashBoardPageScreenState extends State<DashBoardPageScreen> {
                         },
                       ),
                       buildListTile(
-                        title: "Profile",
+                        title: "Students Profiles",
                         style: TextStyle(
                           fontSize: 12,
-                          fontWeight: logic.selectedIndex == 4
+                          fontWeight: logic.selectedIndex == 3
                               ? FontWeight.w700
                               : FontWeight.w600,
                           fontFamily: 'Open Sans',
-                          color: logic.selectedIndex == 4
+                          color: logic.selectedIndex == 3
                               ? ConstClass.selectedColor
                               : Colors.black,
                         ),
                         imgUrl:
-                            "assets/icons/bottomBar/${logic.selectedIndex == 4 ? "profile_select" : "profile_unselect"}.svg",
+                            "assets/icons/bottomBar/${logic.selectedIndex == 3 ? "profile_select" : "profile_unselect"}.svg",
                         onTap: () {
-                          _onItemTapped(4, logic);
-                          Get.back();
+                          // BlocProvider.of<MainBloc>(context)
+                          //     .add(GettingStaffClassSectionList());
+                          // BlocProvider.of<MainBloc>(context)
+                          //     .add(GettingAdminClassList());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AdminStudentProfileList()));
+                          // _onItemTapped(3, logic);
+                          // Get.back();
                         },
                       ),
+                      // buildListTile(
+                      //   title: "Student Profiles",
+                      //   style: TextStyle(
+                      //     fontSize: 12,
+                      //     fontWeight: logic.selectedIndex == 3
+                      //         ? FontWeight.w700
+                      //         : FontWeight.w600,
+                      //     fontFamily: 'Open Sans',
+                      //     color: logic.selectedIndex == 3
+                      //         ? ConstClass.selectedColor
+                      //         : Colors.black,
+                      //   ),
+                      //   imgUrl:
+                      //       "assets/icons/bottomBar/${logic.selectedIndex == 3 ? "profile_select" : "profile_unselect"}.svg",
+                      //   onTap: () {
+                      //     // BlocProvider.of<MainBloc>(context)
+                      //     //     .add(GettingStaffClassSectionList());
+                      //     BlocProvider.of<MainBloc>(context)
+                      //         .add(GettingStaffClassList());
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => StudentProfileList()));
+                      //     // _onItemTapped(3, logic);
+                      //     // Get.back();
+                      //   },
+                      // ),
+
+                      // buildListTile(
+                      //   title: "Profile",
+                      //   style: TextStyle(
+                      //     fontSize: 12,
+                      //     fontWeight: logic.selectedIndex == 4
+                      //         ? FontWeight.w700
+                      //         : FontWeight.w600,
+                      //     fontFamily: 'Open Sans',
+                      //     color: logic.selectedIndex == 4
+                      //         ? ConstClass.selectedColor
+                      //         : Colors.black,
+                      //   ),
+                      //   imgUrl:
+                      //       "assets/icons/bottomBar/${logic.selectedIndex == 4 ? "profile_select" : "profile_unselect"}.svg",
+                      //   onTap: () {
+                      //     _onItemTapped(4, logic);
+                      //     Get.back();
+                      //   },
+                      // ),
+
                       buildListTile(
                         title: "Logout",
                         style: TextStyle(
@@ -880,29 +942,89 @@ class _DashBoardPageScreenState extends State<DashBoardPageScreen> {
                             _onItemTapped(2, logic);
                             Get.back();
                           }),
-                      buildListTile(
-                        title: "Profile",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: logic.selectedIndex == 3
-                              ? FontWeight.w700
-                              : FontWeight.w600,
-                          fontFamily: 'Open Sans',
-                          color: logic.selectedIndex == 3
-                              ? ConstClass.selectedColor
-                              : Colors.black,
-                        ),
-                        imgUrl:
-                            "assets/icons/bottomBar/${logic.selectedIndex == 3 ? "profile_select" : "profile_unselect"}.svg",
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProfileScreen()));
-                          // _onItemTapped(3, logic);
-                          // Get.back();
-                        },
-                      ),
+                      // buildListTile(
+                      //   title: "Profile",
+                      //   style: TextStyle(
+                      //     fontSize: 12,
+                      //     fontWeight: logic.selectedIndex == 3
+                      //         ? FontWeight.w700
+                      //         : FontWeight.w600,
+                      //     fontFamily: 'Open Sans',
+                      //     color: logic.selectedIndex == 3
+                      //         ? ConstClass.selectedColor
+                      //         : Colors.black,
+                      //   ),
+                      //   imgUrl:
+                      //       "assets/icons/bottomBar/${logic.selectedIndex == 3 ? "profile_select" : "profile_unselect"}.svg",
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => ProfileScreen()));
+                      //     // _onItemTapped(3, logic);
+                      //     // Get.back();
+                      //   },
+                      // ),
+                      logic.userRole != "Student"
+                          ? SizedBox.shrink()
+                          : buildListTile(
+                              title: "My Profiles",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: logic.selectedIndex == 3
+                                    ? FontWeight.w700
+                                    : FontWeight.w600,
+                                fontFamily: 'Open Sans',
+                                color: logic.selectedIndex == 3
+                                    ? ConstClass.selectedColor
+                                    : Colors.black,
+                              ),
+                              imgUrl:
+                                  "assets/icons/bottomBar/${logic.selectedIndex == 3 ? "profile_select" : "profile_unselect"}.svg",
+                              onTap: () {
+                                // BlocProvider.of<MainBloc>(context)
+                                //     .add(GettingStaffClassSectionList());
+                                BlocProvider.of<MainBloc>(context)
+                                    .add(GettingStaffClassList());
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            StudentOwnProfile()));
+                                // _onItemTapped(3, logic);
+                                // Get.back();
+                              },
+                            ),
+                      logic.userRole == "Student"
+                          ? SizedBox.shrink()
+                          : buildListTile(
+                              title: "Student Profiles",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: logic.selectedIndex == 3
+                                    ? FontWeight.w700
+                                    : FontWeight.w600,
+                                fontFamily: 'Open Sans',
+                                color: logic.selectedIndex == 3
+                                    ? ConstClass.selectedColor
+                                    : Colors.black,
+                              ),
+                              imgUrl:
+                                  "assets/icons/bottomBar/${logic.selectedIndex == 3 ? "profile_select" : "profile_unselect"}.svg",
+                              onTap: () {
+                                // BlocProvider.of<MainBloc>(context)
+                                //     .add(GettingStaffClassSectionList());
+                                BlocProvider.of<MainBloc>(context)
+                                    .add(GettingStaffClassList());
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            StudentProfileList()));
+                                // _onItemTapped(3, logic);
+                                // Get.back();
+                              },
+                            ),
                       buildListTile(
                         title: "Logout",
                         style: TextStyle(

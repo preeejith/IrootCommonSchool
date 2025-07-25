@@ -251,7 +251,8 @@ class ShowStudentAttendanceDatum {
         transportOptions: json["transportOptions"],
         mobile: json["mobile"],
         city: json["city"],
-        state: json["state"],
+        state: json
+        ["state"],
         pincode: json["pincode"],
         bloodGroupId: json["bloodGroupId"],
         isPromoted: json["isPromoted"],

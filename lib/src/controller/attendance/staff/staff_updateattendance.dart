@@ -1,0 +1,544 @@
+// import 'dart:convert';
+// import 'dart:developer';
+
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:get_storage/get_storage.dart';
+// import 'package:http/http.dart' as http;
+// import 'package:intl/intl.dart';
+// import 'package:iroots/common/app_data.dart';
+// import 'package:iroots/src/controller/home/staff/staff_home_controller.dart';
+// import 'package:iroots/src/modal/attendance/showStudentAttendanceModalClass.dart';
+// import 'package:iroots/src/modal/attendance/showattendanceupdatemodel.dart';
+// import 'package:iroots/src/modal/attendance/studentAttendanceByStaffModalClass.dart';
+// import 'package:iroots/src/modal/home/staff/staffDetails.dart';
+// import 'package:iroots/src/ui/auth/login_page.dart';
+// import 'package:iroots/src/utility/const.dart';
+// import 'package:iroots/src/utility/util.dart';
+
+// //newwstudentattendanceupdate
+// class StaffUpdateAttendanceController extends GetxController {
+//   final GetStorage box = Get.put(GetStorage());
+//   final staffHomeWorkController = Get.put(StaffHomeController());
+
+//   final String _currentDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
+//   String? _currentDay;
+//   String _selectedDateFromCalender =
+//       DateFormat('dd/MM/yyyy').format(DateTime.now());
+//   Rx<StaffDetail> staffDetail = StaffDetail().obs;
+//   List<StudentAttenUpdateModalClass> dummyListttttt = [];
+//   StudentAttenUpdateModalClass? fullAttendance;
+//   StudentAttenUpdateModalClass? halfAttendance;
+//   StudentAttenUpdateModalClass? othersAttendance;
+//   RxBool showProgress = false.obs;
+//   RxBool saveAttenShowProgress = false.obs;
+//   RxBool isDataFound = false.obs;
+//   RxBool isFirstTime = true.obs;
+//   final ScrollController verticalScrollController = ScrollController();
+//   final ScrollController horizontalScrollController = ScrollController();
+//   DateTime _selectedDate = DateTime.now();
+
+//   // Section and Class related variables
+//   RxString selectedSection = ''.obs;
+//   RxString selectedSectionId = ''.obs;
+//   RxString selectedClass = ''.obs;
+//   RxString selectedClassId = ''.obs;
+//   RxList<Map<String, dynamic>> sectionList =
+//       <Map<String, dynamic>>[].obs; // Changed to Map type
+//   RxBool isSectionLoading = false.obs;
+
+//   String? accessToken;
+
+//   @override
+//   void onInit() {
+//     accessToken = box.read("accessToken");
+//     // Initialize default values if staff is class teacher
+//     _initializeDefaults();
+//     super.onInit();
+//   }
+
+//   void _initializeDefaults() {
+//     // Set default section for class teachers
+//     if (staffHomeWorkController.isclassteacherany == true &&
+//         staffHomeWorkController.staffClassmodel?.data != null) {
+//       try {
+//         final classTeacherData = staffHomeWorkController.staffClassmodel!.data!
+//             .firstWhere((item) => item.isClassTeacher == true);
+
+//         selectedSection.value = classTeacherData.section ?? '';
+//         selectedSectionId.value = classTeacherData.sectionId.toString();
+//       } catch (e) {
+//         print('No class teacher data found');
+//       }
+//     }
+//   }
+
+// // Import or use the same SectionData class from StaffHomeController
+// // If you need to define it separately, make sure the class structure is identical
+
+// // Method to fetch sections based on selected class
+//   Future<void> fetchSections(String staffId, String classId) async {
+//     if (staffId.isEmpty || classId.isEmpty) {
+//       print('Staff ID or Class ID is empty');
+//       return;
+//     }
+
+//     try {
+//       isSectionLoading.value = true;
+//       sectionList.clear();
+//       selectedSection.value = '';
+//       selectedSectionId.value = '';
+
+//       final sectionResponse =
+//           await staffHomeWorkController.getStaffSectionList(staffId, classId);
+
+//       if (sectionResponse != null &&
+//           sectionResponse.responseCode == "200" &&
+//           sectionResponse.data != null &&
+//           sectionResponse.data!.isNotEmpty) {
+//         // Solution: Create new objects with the same data to avoid type conflicts
+//         for (var item in sectionResponse.data!) {
+//           sectionList.add({
+//             'sectionId': item.sectionId,
+//             'sectionName': item.sectionName,
+//           });
+//         }
+
+//         // Auto-select first section if available
+//         if (sectionList.isNotEmpty) {
+//           selectedSection.value = sectionList.first['sectionName'] ?? '';
+//           selectedSectionId.value = sectionList.first['sectionId'].toString();
+//         }
+
+//         print('Sections loaded: ${sectionList.length}');
+//       } else {
+//         print('No sections found or API error');
+//         AppUtil.snackBar("No sections found for selected class");
+//       }
+//     } catch (e) {
+//       print('Error fetching sections: $e');
+//       AppUtil.snackBar("Error loading sections: $e");
+//     } finally {
+//       isSectionLoading.value = false;
+//     }
+//   }
+
+//   String formatDate() {
+//     return DateFormat('dd-MMM-yyyy').format(_selectedDate);
+//   }
+
+//   void pickDateDialog(BuildContext context) {
+//     showDatePicker(
+//       context: context,
+//       initialDate: _selectedDate,
+//       firstDate: DateTime(2000),
+//       lastDate: DateTime.now(),
+//     ).then((pickedDate) {
+//       if (pickedDate == null) {
+//         return;
+//       }
+//       _selectedDate = pickedDate;
+//       _selectedDateFromCalender =
+//           DateFormat('dd/MM/yyyy').format(_selectedDate);
+//       update();
+//     });
+//   }
+
+//   void showStudentAttendance(String? classId, String? sectionId) {
+//     DateTime selectedDate =
+//         DateFormat('dd/MM/yyyy').parse(_selectedDateFromCalender);
+//     DateTime currentDate = DateFormat('dd/MM/yyyy').parse(_currentDate);
+//     _currentDay = DateFormat('EEEE')
+//         .format(DateFormat('dd/MM/yyyy').parse(_selectedDateFromCalender));
+
+//     if (selectedDate.isAfter(currentDate)) {
+//       AppUtil.snackBar("Please select a past or today's date.");
+//       return;
+//     }
+
+//     _showStudentAtten(classId, sectionId);
+//   }
+
+//   void showNewwStudentAttendance(String? classId, String? sectionId) {
+//     DateTime selectedDate =
+//         DateFormat('dd/MM/yyyy').parse(_selectedDateFromCalender);
+//     DateTime currentDate = DateFormat('dd/MM/yyyy').parse(_currentDate);
+//     _currentDay = DateFormat('EEEE')
+//         .format(DateFormat('dd/MM/yyyy').parse(_selectedDateFromCalender));
+
+//     if (selectedDate.isAfter(currentDate)) {
+//       AppUtil.snackBar("Please select a past or today's date.");
+//       return;
+//     }
+
+//     _showNewwwStudentAtten(classId, sectionId);
+//   }
+
+//   _studentMarkAttendance() {
+//     isFirstTime.value = true;
+//   }
+
+//   Future<void> _showNewwwStudentAtten(
+//       String? classId, String? sectionId) async {
+//     isFirstTime.value = false;
+//     _showProgress();
+
+//     try {
+//       Map<String, String> credentials = {
+//         "classId": classId.toString(),
+//         "sectionId": sectionId.toString(),
+//         "fromDate": "18/07/2025",
+//         "toDate": "18/07/2025",
+//         "studentId": "0",
+//         "batchId": "22"
+//       };
+//       String jsonCredentials = jsonEncode(credentials);
+
+//       http.Response response = await http.post(
+//         Uri.parse("${baseUrlName}Attendance/ViewStudentAttendance"),
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': 'Bearer $accessToken',
+//         },
+//         body: jsonCredentials,
+//       );
+//       log("${baseUrlName}Attendance/ViewStudentAttendance");
+//       log("${baseUrlName}Student/GetStudentDetailsByClassSection?ClassId=$classId&SectionId=$sectionId");
+//       log(jsonCredentials.toString());
+
+//       if (response.statusCode == 200) {
+//         var useridcreated = box.read("userId");
+//         var studentAttendance =
+//             studentAttenUpdateModalClassFromJson(response.body);
+//         if (studentAttendance.responseCode == "200" &&
+//             studentAttendance.data!.isNotEmpty) {
+//           List<StudentAttenUpdateModalClass> studentAttendanceDatList = [];
+//           studentAttendanceDatList.clear();
+//           dummyListttttt.clear();
+
+//           studentAttendanceDatList.addAll(studentAttendance.data!);
+
+//           // Get section name from selected section or fallback to staff data
+//           String sectionName = selectedSection.value.isNotEmpty
+//               ? selectedSection.value
+//               : (staffHomeWorkController.staffClassmodel?.data
+//                       ?.firstWhere(
+//                         (item) => item.isClassTeacher == true,
+//                         // orElse: () => null,
+//                       )
+//                       .section ??
+//                   "");
+// dummyListttttt.addAll(studentAttendanceDatList
+//     .where((student) => student.isApplyforTc != true)
+//     .map((student) => StudentAttenUpdateModalClass(
+//           className: selectedClass.value.isNotEmpty
+//               ? selectedClass.value
+//               : (staffHomeWorkController.dataItemName.isEmpty
+//                   ? student.datumClass
+//                   : staffHomeWorkController.dataItemName),
+//           classId: student.classId,
+//           markFullDayAbsent: "False",
+//           markHalfDayAbsent: "False",
+//           others: "False",
+//           createdBy: useridcreated.toString(),
+//           createdDate: _selectedDateFromCalender,
+//           attendanceId: 0,
+//           day: _currentDay,
+//           batchId: student.batchId.toString(),
+//           sectionId: student.sectionId,
+//           sectionName: sectionName,
+//           studentName: student.name,
+//           studentRegisterId: student.studentId,
+//         ))
+//     .toList());
+
+// // Sorting dummyList based on studentName in alphabetical order
+// dummyListttttt.sort((a, b) => a.studentName!
+//     .toLowerCase()
+//     .compareTo(b.studentName!.toLowerCase()));
+
+// isDataFound.value = true;
+// _hideProgress();
+// } else if (studentAttendance.responseCode == "500") {
+// _hideProgress();
+// isDataFound.value = false;
+// AppUtil.snackBar("Something went wrong");
+// } else {
+// _hideProgress();
+// isDataFound.value = false;
+// }
+//         //   dummyListttttt.addAll(studentAttendanceDatList
+//         //       .where((student) => student.isApplyforTc != true)
+//         //       .map((student) => StudentAttenUpdateModalClass(
+//         //             className: selectedClass.value.isNotEmpty
+//         //                 ? selectedClass.value
+//         //                 : (staffHomeWorkController.dataItemName.isEmpty
+//         //                     ? student.datumClass
+//         //                     : staffHomeWorkController.dataItemName),
+//         //             classId: student.classId,
+//         //             markFullDayAbsent: "False",
+//         //             markHalfDayAbsent: "False",
+//         //             others: "False",
+//         //             createdBy: useridcreated.toString(),
+//         //             createdDate: _selectedDateFromCalender,
+//         //             attendanceId: 0,
+//         //             day: _currentDay,
+//         //             batchId: student.batchId.toString(),
+//         //             sectionId: student.sectionId,
+//         //             sectionName: sectionName,
+//         //             studentName: student.name,
+//         //             studentRegisterId: student.studentId,
+//         //           ))
+//         //       .toList());
+
+//         //   // Sorting dummyList based on studentName in alphabetical order
+//         //   dummyListttttt.sort((a, b) => a.studentName!
+//         //       .toLowerCase()
+//         //       .compareTo(b.studentName!.toLowerCase()));
+
+//         //   isDataFound.value = true;
+//         //   _hideProgress();
+//         // } else if (studentAttendance.responseCode == "500") {
+//         //   _hideProgress();
+//         //   isDataFound.value = false;
+//         //   AppUtil.snackBar("Something went wrong");
+//         // } else {
+//         //   _hideProgress();
+//         //   isDataFound.value = false;
+//         // }
+//       } else if (response.statusCode == 401) {
+//         _hideProgress();
+//         AppUtil.showAlertDialog(onPressed: () {
+//           Get.back();
+//           box.remove('accessToken');
+//           box.remove('isUserLogin');
+//           box.remove('userRole');
+//           Get.offAll(() => const LoginPage());
+//         });
+//       } else {
+//         _hideProgress();
+//         isDataFound.value = false;
+//         AppUtil.snackBar('Something went wrong');
+//       }
+//     } catch (error) {
+//       _hideProgress();
+//       isDataFound.value = false;
+//       AppUtil.snackBar('$error');
+//     }
+
+//     update();
+//   }
+
+//   Future<void> _showStudentAtten(String? classId, String? sectionId) async {
+//     isFirstTime.value = false;
+//     _showProgress();
+
+//     try {
+//       Map<String, String> credentials = {};
+//       String jsonCredentials = jsonEncode(credentials);
+
+//       http.Response response = await http.get(
+//         Uri.parse(
+//             "${baseUrlName}Student/GetStudentDetailsByClassSection?ClassId=$classId&SectionId=$sectionId"),
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': 'Bearer $accessToken',
+//         },
+//       );
+
+//       log("${baseUrlName}Student/GetStudentDetailsByClassSection?ClassId=$classId&SectionId=$sectionId");
+//       log(jsonCredentials.toString());
+
+//       if (response.statusCode == 200) {
+//         var useridcreated = box.read("userId");
+//         var studentAttendance =
+//             showStudentAttendanceModalClassFromJson(response.body);
+//         if (studentAttendance.responseCode == "200" &&
+//             studentAttendance.data!.isNotEmpty) {
+//           List<ShowStudentAttendanceDatum> studentAttendanceDatList = [];
+//           studentAttendanceDatList.clear();
+//           dummyList.clear();
+
+//           studentAttendanceDatList.addAll(studentAttendance.data!);
+
+//           // Get section name from selected section or fallback to staff data
+//           String sectionName = selectedSection.value.isNotEmpty
+//               ? selectedSection.value
+//               : (staffHomeWorkController.staffClassmodel?.data
+//                       ?.firstWhere(
+//                         (item) => item.isClassTeacher == true,
+//                         // orElse: () => null,
+//                       )
+//                       .section ??
+//                   "");
+
+//           dummyList.addAll(studentAttendanceDatList
+//               .where((student) => student.isApplyforTc != true)
+//               .map((student) => StudentAttendanceByStaffDatum(
+//                     className: selectedClass.value.isNotEmpty
+//                         ? selectedClass.value
+//                         : (staffHomeWorkController.dataItemName.isEmpty
+//                             ? student.datumClass
+//                             : staffHomeWorkController.dataItemName),
+//                     classId: student.classId,
+//                     markFullDayAbsent: "False",
+//                     markHalfDayAbsent: "False",
+//                     others: "False",
+//                     createdBy: useridcreated.toString(),
+//                     createdDate: _selectedDateFromCalender,
+//                     attendanceId: 0,
+//                     day: _currentDay,
+//                     batchId: student.batchId.toString(),
+//                     sectionId: student.sectionId,
+//                     sectionName: sectionName,
+//                     studentName: student.name,
+//                     studentRegisterId: student.studentId,
+//                   ))
+//               .toList());
+
+//           // Sorting dummyList based on studentName in alphabetical order
+//           dummyList.sort((a, b) => a.studentName!
+//               .toLowerCase()
+//               .compareTo(b.studentName!.toLowerCase()));
+
+//           isDataFound.value = true;
+//           _hideProgress();
+//         } else if (studentAttendance.responseCode == "500") {
+//           _hideProgress();
+//           isDataFound.value = false;
+//           AppUtil.snackBar("Something went wrong");
+//         } else {
+//           _hideProgress();
+//           isDataFound.value = false;
+//         }
+//       } else if (response.statusCode == 401) {
+//         _hideProgress();
+//         AppUtil.showAlertDialog(onPressed: () {
+//           Get.back();
+//           box.remove('accessToken');
+//           box.remove('isUserLogin');
+//           box.remove('userRole');
+//           Get.offAll(() => const LoginPage());
+//         });
+//       } else {
+//         _hideProgress();
+//         isDataFound.value = false;
+//         AppUtil.snackBar('Something went wrong');
+//       }
+//     } catch (error) {
+//       _hideProgress();
+//       isDataFound.value = false;
+//       AppUtil.snackBar('$error');
+//     }
+
+//     update();
+//   }
+
+//   Future<void> saveAttendance() async {
+//     saveAttenShowProgress.value = true;
+
+//     try {
+//       String jsonCredentials = jsonEncode(dummyList);
+//       print(jsonCredentials);
+//       final response = await http.post(
+//         Uri.parse("${baseUrlName}Attendance/StudentAttendance"),
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': 'Bearer $accessToken',
+//         },
+//         body: jsonCredentials,
+//       );
+//       Map<String, dynamic> responseJson = jsonDecode(response.body);
+//       print("Response Status Code: ${response.statusCode}");
+//       print("Response Code: ${responseJson['responseCode'].toString()}");
+
+//       if (response.statusCode == 200) {
+//         print("Response Body: ${response.body}");
+
+//         if (responseJson['responseCode'].toString() == "201") {
+//           saveAttenShowProgress.value = false;
+//           AppUtil.snackBar("Attendance saved successfully");
+//         } else if (responseJson['responseCode'].toString() == "500") {
+//           saveAttenShowProgress.value = false;
+//           AppUtil.snackBar("Something went wrong");
+//         } else if (responseJson['responseCode'].toString() == "400") {
+//           saveAttenShowProgress.value = false;
+//           AppUtil.snackBar("Something went wrong. Please try again later.");
+//         } else {
+//           saveAttenShowProgress.value = false;
+//           AppUtil.snackBar(responseJson['responseCode'].toString());
+//           print(
+//               "Error Response Code: ${responseJson['responseCode'].toString()}");
+//         }
+//       } else if (response.statusCode == 401) {
+//         saveAttenShowProgress.value = false;
+//         AppUtil.showAlertDialog(onPressed: () {
+//           Get.back();
+//           box.remove('accessToken');
+//           box.remove('isUserLogin');
+//           box.remove('userRole');
+//           Get.offAll(() => const LoginPage());
+//         });
+//       } else {
+//         saveAttenShowProgress.value = false;
+//         AppUtil.snackBar('Something went wrong');
+//       }
+//     } catch (error) {
+//       saveAttenShowProgress.value = false;
+//       AppUtil.snackBar('$error');
+//       print("Save Attendance Error: $error");
+//     }
+//   }
+
+//   void _showProgress() {
+//     showProgress.value = true;
+//   }
+
+//   void _hideProgress() {
+//     showProgress.value = false;
+//   }
+
+//   void markAllFullAttendance() {
+//     for (var allAttendance in dummyList) {
+//       allAttendance.markFullDayAbsent =
+//           (allAttendance.markFullDayAbsent == "False") ? "True" : "False";
+//       fullAttendance = allAttendance;
+//     }
+//     update();
+//   }
+
+//   void markAllHalfAttendance() {
+//     for (var allAttendance in dummyList) {
+//       allAttendance.markHalfDayAbsent =
+//           (allAttendance.markHalfDayAbsent == "False") ? "True" : "False";
+//       halfAttendance = allAttendance;
+//     }
+//     update();
+//   }
+
+//   void markAllOthersAttendance() {
+//     for (var allAttendance in dummyList) {
+//       allAttendance.others =
+//           (allAttendance.others == "False") ? "True" : "False";
+//       othersAttendance = allAttendance;
+//     }
+//     update();
+//   }
+
+//   void markFullAttendance(StudentAttendanceByStaffDatum item) {
+//     item.markFullDayAbsent =
+//         (item.markFullDayAbsent == "False") ? "True" : "False";
+//     update();
+//   }
+
+//   void markHalfAttendance(StudentAttendanceByStaffDatum item) {
+//     item.markHalfDayAbsent =
+//         (item.markHalfDayAbsent == "False") ? "True" : "False";
+//     update();
+//   }
+
+//   void markOtherAttendance(StudentAttendanceByStaffDatum item) {
+//     item.others = (item.others == "False") ? "True" : "False";
+//     update();
+//   }
+// }

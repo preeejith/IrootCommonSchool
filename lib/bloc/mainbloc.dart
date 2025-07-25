@@ -19,10 +19,20 @@ import 'package:iroots/bloc/blocmodels/studentfeelistmodel.dart';
 import 'package:iroots/bloc/blocmodels/studentreportcardmodel.dart';
 import 'package:iroots/bloc/blocserver/serverhelper.dart';
 import 'package:iroots/newscreens/studentattendancemodel.dart';
+import 'package:iroots/src/modal/attendance/new/academicprofileinfomodel.dart';
+import 'package:iroots/src/modal/attendance/new/adminclasslistmodel.dart';
+import 'package:iroots/src/modal/attendance/new/adminsectionlistmodel.dart';
+import 'package:iroots/src/modal/attendance/new/staffclasslistmodel.dart';
+import 'package:iroots/src/modal/attendance/new/staffsectionlistmodel.dart';
+import 'package:iroots/src/modal/attendance/new/studentlistmodel.dart';
 
 class MainBloc extends Bloc<MainEvents, MainState> {
   ShopDetailedModel shopDetailedModel = ShopDetailedModel();
   StudentFeeListModel studentFeeListModel = StudentFeeListModel();
+
+  StudentProfileListModel studentProfileListModel = StudentProfileListModel();
+  AcademicProfileInfoModel academicProfileInfoModel =
+      AcademicProfileInfoModel();
   StudentAttendanceModel studentAttendanceModel = StudentAttendanceModel();
   PreparePaymentRepsonseModel preparePaymentRepsonseModel =
       PreparePaymentRepsonseModel();
@@ -37,8 +47,14 @@ class MainBloc extends Bloc<MainEvents, MainState> {
   CaptureModel captureModel = CaptureModel();
   CurrentVersionModel currentVersionModel = CurrentVersionModel();
   AdminDashboardModel adminDashboardModel = AdminDashboardModel();
-
+  int selectedBatchId = 22;
   String? classdropdownvalue = "";
+  String? classlistdropdownvalue = "";
+  String? classlistIddropdownvalue = "";
+  String? adminclasslistdropdownvalue = "";
+  String? adminlistIddropdownvalue = "";
+
+  String? classsectionlistdropdownvalue = "";
   String? latestversion = "0";
   bool? term1exmhpn = false;
   bool? term2exmhpn = false;
@@ -52,9 +68,14 @@ class MainBloc extends Bloc<MainEvents, MainState> {
   String? encryptKey = "";
   String? decryptKey = "";
   String? paymentpassword = "";
+  StaffClassListModel? staffClassListModel = StaffClassListModel();
+  StaffSectionListModel? staffSectionListModel = StaffSectionListModel();
+  AdminClassSectionModel? adminClassSectionModel = AdminClassSectionModel();
 
   StudReportCardModel studReportCardModelunit3 = StudReportCardModel();
+  AdminClassListModel adminClassListModel = AdminClassListModel();
 
+  String? classsectionIdlistdropdownvalue;
   double totalfeeamount = 0;
   String? nameStudent;
   String feeHeading = "";
@@ -62,8 +83,24 @@ class MainBloc extends Bloc<MainEvents, MainState> {
   String? classId = "";
   String? currentDropDate = "2025";
   String? currenStarttDropDate = "2024";
+
+  final List<Map<String, dynamic>> academicYears = [
+    {"batchId": 1, "batchName": "2022-2023"},
+    {"batchId": 20, "batchName": "2023-2024"},
+    {"batchId": 21, "batchName": "2024-2025"},
+    {"batchId": 22, "batchName": "2025-2026"},
+  ];
+
   MainBloc() : super(LoginInitial()) {
     on<GetStudentFeeList>(getStudentfeelist);
+    on<GetStudentProfileList>(getStudentProfileList);
+
+    on<GetAdminStudentProfile>(getAdminStudentProfile);
+    on<GetStudentProfile>(getStudentProfile);
+    on<GetAcademicProfile>(getAcademicProfile);
+    on<GettingStaffClassSectionList>(gettingStaffClassSectionList);
+    on<GettingStaffClassList>(gettingStaffClassList);
+    on<GettingAdminClassList>(gettingAdminClassList);
     on<GetStudentGradeCard>(getStudentGradeCard);
     on<GetStudentTotalamount>(getStudentTotalamount);
     on<GetStudentAttendance>(getStudentAttendance);
@@ -71,6 +108,7 @@ class MainBloc extends Bloc<MainEvents, MainState> {
     on<GetAdminExmPublishDetails>(getAdminExmPublishDetails);
     on<GetDashboardStudentData>(getDashboardStudentData);
     on<GetMerchentData>(getMerchentData);
+    on<GettingAdminClassSectionList>(gettingAdminClassSectionList);
 
     on<GetCapturePaymentResponse>(getCapturePaymentResponse);
     on<GetClassList>(getClassList);
@@ -79,6 +117,10 @@ class MainBloc extends Bloc<MainEvents, MainState> {
     on<GetCurrentVersion>(getCurrentVersion);
     on<HomeWorkDelete>(homeWorkDelete);
     on<UpdateClassDropdownValue>(updateClassDropdownValue);
+    on<RefrestEvent>((event, emit) async {
+      emit(RefreshPrvState());
+      emit(RefreshState());
+    });
   }
 
   Future<FutureOr<void>> getStudentTotalamount(
@@ -263,6 +305,108 @@ class MainBloc extends Bloc<MainEvents, MainState> {
       }
     } catch (e) {
       emit(ClassListError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> gettingStaffClassList(
+      GettingStaffClassList event, Emitter<MainState> emit) async {
+    try {
+      String? staffId = await PrefManager.getStaffId();
+      emit(GettingStafffClassList());
+
+      staffClassListModel = StaffClassListModel.fromJson(
+          await ServerHelper.post(
+              'Exam/GetStaffClassList?staff_Id=$staffId', ""));
+      if (staffClassListModel!.data != null) {
+        classlistdropdownvalue =
+            staffClassListModel!.data![0].dataListItemName.toString();
+        classlistIddropdownvalue =
+            staffClassListModel!.data![0].dataListItemId.toString();
+        emit(ClassStaffListSuccess(
+            classId: staffClassListModel!.data![0].dataListItemId.toString()));
+      } else if (staffClassListModel!.responseCode != "200") {
+        // Helper.showToast(msg: myqpadshoplistModel.message);
+        emit(ClassStaffFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(ClassStaffListError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> gettingAdminClassList(
+      GettingAdminClassList event, Emitter<MainState> emit) async {
+    try {
+      emit(GettingAdminnClassList());
+
+      adminClassListModel = AdminClassListModel.fromJson(await ServerHelper.get(
+        'Exam/DataItemList?Id=5',
+      ));
+      if (adminClassListModel.data != null) {
+        classlistdropdownvalue =
+            adminClassListModel.data![0].dataListItemName.toString();
+        classlistIddropdownvalue =
+            adminClassListModel.data![0].dataListItemId.toString();
+        emit(ClassAdminListSuccess(
+            classId: adminClassListModel.data![0].dataListItemId.toString()));
+      } else if (adminClassListModel.responseCode != "200") {
+        // Helper.showToast(msg: myqpadshoplistModel.message);
+        emit(ClassAdminFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(ClassAdminListError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> gettingAdminClassSectionList(
+      GettingAdminClassSectionList event, Emitter<MainState> emit) async {
+    try {
+      emit(GettingStafffClassSectionList());
+
+      adminClassSectionModel =
+          AdminClassSectionModel.fromJson(await ServerHelper.get(
+        'Exam/DataItemList?Id=6',
+      ));
+      if (adminClassSectionModel!.data != null) {
+        classsectionlistdropdownvalue =
+            adminClassSectionModel!.data![0].dataListItemName.toString();
+        classsectionIdlistdropdownvalue =
+            adminClassSectionModel!.data![0].dataListItemId.toString();
+        // classlistdropdownvalue =
+        //     staffSectionListModel!.data![0].dataListItemName.toString();
+        emit(ClassStaffSectionListSuccess());
+      } else if (adminClassSectionModel!.responseCode != "200") {
+        // Helper.showToast(msg: myqpadshoplistModel.message);
+        emit(ClassStaffSectionFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(ClassStaffSectionListError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> gettingStaffClassSectionList(
+      GettingStaffClassSectionList event, Emitter<MainState> emit) async {
+    try {
+      String? staffId = await PrefManager.getStaffId();
+      emit(GettingStafffClassSectionList());
+
+      staffSectionListModel =
+          StaffSectionListModel.fromJson(await ServerHelper.get(
+        'Exam/GetStaffSectionList?staffId=$staffId&classId=${event.classId}',
+      ));
+      if (staffSectionListModel!.data != null) {
+        classsectionlistdropdownvalue =
+            staffSectionListModel!.data![0].sectionName.toString();
+        classsectionIdlistdropdownvalue =
+            staffSectionListModel!.data![0].sectionId.toString();
+        // classlistdropdownvalue =
+        //     staffSectionListModel!.data![0].dataListItemName.toString();
+        emit(ClassStaffSectionListSuccess());
+      } else if (staffSectionListModel!.responseCode != "200") {
+        // Helper.showToast(msg: myqpadshoplistModel.message);
+        emit(ClassStaffSectionFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(ClassStaffSectionListError(error: "Invalid credentials"));
     }
   }
 
@@ -472,6 +616,129 @@ class MainBloc extends Bloc<MainEvents, MainState> {
     }
   }
 
+  Future<FutureOr<void>> getAdminStudentProfile(
+      GetAdminStudentProfile event, Emitter<MainState> emit) async {
+    try {
+      studentProfileListModel = StudentProfileListModel();
+      String jsonString1 = await PrefManager.getAdditionalInfo();
+
+      // String jsonstring2 = jsonString1;
+
+      // List<dynamic> studentList = jsonDecode(jsonstring2);
+
+      // String sstudntId = studentList[0]["ApplicationNumber"].toString();
+      // String classIdd = studentList[0]["ClassId"].toString();
+      // String sessionId = studentList[0]["SectionId"].toString();
+      emit(GettingStudentProfile());
+      print("kjcbaskj");
+      // log('Student/StudnetsDetails?BatchId=$selectedBatchId&classId=$classIdd&SectionId=$sessionId&StudentId=$sstudntId');
+      // studentProfileListModel =
+      //     StudentProfileListModel.fromJson(await ServerHelper.get(
+      //   'Student/StudnetsDetails?BatchId=$selectedBatchId&classId=$classIdd&SectionId=$sessionId&StudentId=$sstudntId',
+      // ));
+      // studentProfileListModel =
+      //     StudentProfileListModel.fromJson(await ServerHelper.get(
+      //   'Student/StudnetsDetails?BatchId=22&classId=199&SectionId=24',
+      // ));
+      studentProfileListModel =
+          StudentProfileListModel.fromJson(await ServerHelper.get(
+        'Student/StudnetsDetails?BatchId=$selectedBatchId&classId=$classlistIddropdownvalue&SectionId=$classsectionIdlistdropdownvalue&StudentId=0',
+      ));
+      if (studentProfileListModel.data != null) {
+        emit(StudentProfileListSuccess());
+      } else if (studentProfileListModel.data == null) {
+        emit(StudentProflieListFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(StudentProfileListError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> getStudentProfile(
+      GetStudentProfile event, Emitter<MainState> emit) async {
+    try {
+      studentProfileListModel = StudentProfileListModel();
+      String jsonString1 = await PrefManager.getAdditionalInfo();
+
+      String jsonstring2 = jsonString1;
+
+      List<dynamic> studentList = jsonDecode(jsonstring2);
+
+      String sstudntId = studentList[0]["ApplicationNumber"].toString();
+      String classIdd = studentList[0]["ClassId"].toString();
+      String sessionId = studentList[0]["SectionId"].toString();
+      emit(GettingStudentProfile());
+      print("kjcbaskj");
+      https: //nirmalaapi.lumensof.in/api/Student/StudnetsDetails?BatchId=22&classId=197&SectionId=23&StudentId=0&Application=3899
+      log('Student/StudnetsDetails?BatchId=$selectedBatchId&classId=$classIdd&SectionId=$sessionId&Application=$sstudntId&StudentId=0');
+      studentProfileListModel =
+          StudentProfileListModel.fromJson(await ServerHelper.get(
+        'Student/StudnetsDetails?BatchId=$selectedBatchId&classId=$classIdd&SectionId=$sessionId&Application=$sstudntId&StudentId=0',
+      ));
+      // studentProfileListModel =
+      //     StudentProfileListModel.fromJson(await ServerHelper.get(
+      //   'Student/StudnetsDetails?BatchId=22&classId=197&SectionId=23&StudentId=1692',
+      // ));
+
+      if (studentProfileListModel.data!.isNotEmpty) {
+        emit(StudentProfileListSuccess());
+      } else if (studentProfileListModel.data!.isEmpty) {
+        emit(StudentProflieListFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(StudentProfileListError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> getAcademicProfile(
+      GetAcademicProfile event, Emitter<MainState> emit) async {
+    try {
+      academicProfileInfoModel = AcademicProfileInfoModel();
+
+      emit(GettingAcademicProfile());
+      print("kjcbaskj");
+      // https://nirmalaapi.lumensof.in/api/Student/StudnetsDetails?BatchId=22&classId=197&SectionId=23&StudentId=0&Application=3899
+      log('Student/GetStudnetSummeryBatchWise?StudentId=${event.studnetId}&BatchId=${event.batchId}');
+      academicProfileInfoModel =
+          AcademicProfileInfoModel.fromJson(await ServerHelper.get(
+        // 'Student/GetStudnetSummeryBatchWise?StudentId=1937&BatchId=21',
+        'Student/GetStudnetSummeryBatchWise?StudentId=${event.studnetId}&BatchId=${event.batchId}',
+      ));
+
+      if (academicProfileInfoModel.data != null) {
+        emit(AcademicProfileSuccess(
+            academicProfileInfoModel: academicProfileInfoModel));
+      } else if (academicProfileInfoModel.data == null) {
+        emit(AcademicProfileFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(AcademicProfileError(error: "Invalid credentials"));
+    }
+  }
+
+  Future<FutureOr<void>> getStudentProfileList(
+      GetStudentProfileList event, Emitter<MainState> emit) async {
+    try {
+      studentProfileListModel = StudentProfileListModel();
+
+      emit(GettingStudentProfile());
+      print("kjcbaskj");
+      log('Student/StudnetsDetails?BatchId=$selectedBatchId&classId=$classlistIddropdownvalue&SectionId=$classsectionIdlistdropdownvalue&StudentId=0');
+      studentProfileListModel =
+          StudentProfileListModel.fromJson(await ServerHelper.get(
+        'Student/StudnetsDetails?BatchId=$selectedBatchId&classId=$classlistIddropdownvalue&SectionId=$classsectionIdlistdropdownvalue&StudentId=0',
+      ));
+
+      if (studentProfileListModel.data!.isNotEmpty) {
+        emit(StudentProfileListSuccess());
+      } else if (studentProfileListModel.data!.isEmpty) {
+        emit(StudentProflieListFailed(error: "Invalid credentials"));
+      }
+    } catch (e) {
+      emit(StudentProfileListError(error: "Invalid credentials"));
+    }
+  }
+
   Future<FutureOr<void>> getStudentfeelist(
       GetStudentFeeList event, Emitter<MainState> emit) async {
     try {
@@ -577,6 +844,83 @@ class GetStudentFeeList extends MainEvents {
 
   GetStudentFeeList(
       {this.shopId,
+      this.lon,
+      this.userphone,
+      this.username,
+      this.searchkeyword});
+}
+
+class GetStudentProfileList extends MainEvents {
+  final String? classId, sectionId, batchId, username, searchkeyword;
+
+  GetStudentProfileList(
+      {this.classId,
+      this.sectionId,
+      this.batchId,
+      this.username,
+      this.searchkeyword});
+}
+
+class GetAdminStudentProfile extends MainEvents {
+  final String? classId, sectionId, batchId, username, searchkeyword;
+
+  GetAdminStudentProfile(
+      {this.classId,
+      this.sectionId,
+      this.batchId,
+      this.username,
+      this.searchkeyword});
+}
+
+class GetStudentProfile extends MainEvents {
+  final String? classId, sectionId, batchId, username, searchkeyword;
+
+  GetStudentProfile(
+      {this.classId,
+      this.sectionId,
+      this.batchId,
+      this.username,
+      this.searchkeyword});
+}
+
+class GetAcademicProfile extends MainEvents {
+  final String? classId, studnetId, batchId, username, searchkeyword;
+
+  GetAcademicProfile(
+      {this.classId,
+      this.studnetId,
+      this.batchId,
+      this.username,
+      this.searchkeyword});
+}
+
+class GettingStaffClassList extends MainEvents {
+  final String? shopId, lon, userphone, username, searchkeyword;
+
+  GettingStaffClassList(
+      {this.shopId,
+      this.lon,
+      this.userphone,
+      this.username,
+      this.searchkeyword});
+}
+
+class GettingAdminClassList extends MainEvents {
+  final String? shopId, lon, userphone, username, searchkeyword;
+
+  GettingAdminClassList(
+      {this.shopId,
+      this.lon,
+      this.userphone,
+      this.username,
+      this.searchkeyword});
+}
+
+class GettingStaffClassSectionList extends MainEvents {
+  final String? classId, lon, userphone, username, searchkeyword;
+
+  GettingStaffClassSectionList(
+      {this.classId,
       this.lon,
       this.userphone,
       this.username,
@@ -693,6 +1037,12 @@ class HomeWorkDelete extends MainEvents {
       this.searchkeyword});
 }
 
+class RefrestEvent extends MainEvents {
+  final double? lat, lon;
+
+  RefrestEvent({this.lat, this.lon});
+}
+
 class UpdateClassDropdownValue extends MainEvents {
   final String? newValue, lon, userphone, username, searchkeyword;
 
@@ -726,6 +1076,17 @@ class GetMerchentData extends MainEvents {
       this.searchkeyword});
 }
 
+class GettingAdminClassSectionList extends MainEvents {
+  final String? classId, lon, userphone, username, searchkeyword;
+
+  GettingAdminClassSectionList(
+      {this.classId,
+      this.lon,
+      this.userphone,
+      this.username,
+      this.searchkeyword});
+}
+
 class MainState {}
 
 class LoginInitial extends MainState {}
@@ -740,6 +1101,14 @@ class GettingSlotList extends MainState {}
 
 class StudentFeeListSuccess extends MainState {}
 
+class StudentProfileListSuccess extends MainState {}
+
+class AcademicProfileSuccess extends MainState {
+  final AcademicProfileInfoModel? academicProfileInfoModel;
+
+  AcademicProfileSuccess({this.academicProfileInfoModel});
+}
+
 class ProgressCardSuccess extends MainState {}
 
 class StudentAttendanceSuccess extends MainState {}
@@ -749,6 +1118,20 @@ class PaymentInputResSuccess extends MainState {}
 class AdminExmDetailsSuccess extends MainState {}
 
 class ClassListSuccess extends MainState {}
+
+class ClassStaffListSuccess extends MainState {
+  final String? classId;
+
+  ClassStaffListSuccess({this.classId});
+}
+
+class ClassAdminListSuccess extends MainState {
+  final String? classId;
+
+  ClassAdminListSuccess({this.classId});
+}
+
+class ClassStaffSectionListSuccess extends MainState {}
 
 class AdminDashboardSuccess extends MainState {}
 
@@ -770,6 +1153,18 @@ class StudentFeeListError extends MainState {
   final String? error;
 
   StudentFeeListError({this.error});
+}
+
+class StudentProfileListError extends MainState {
+  final String? error;
+
+  StudentProfileListError({this.error});
+}
+
+class AcademicProfileError extends MainState {
+  final String? error;
+
+  AcademicProfileError({this.error});
 }
 
 class StudentProgreessCardError extends MainState {
@@ -800,6 +1195,24 @@ class ClassListError extends MainState {
   final String? error;
 
   ClassListError({this.error});
+}
+
+class ClassStaffListError extends MainState {
+  final String? error;
+
+  ClassStaffListError({this.error});
+}
+
+class ClassAdminListError extends MainState {
+  final String? error;
+
+  ClassAdminListError({this.error});
+}
+
+class ClassStaffSectionListError extends MainState {
+  final String? error;
+
+  ClassStaffSectionListError({this.error});
 }
 
 class AdminDashboardError extends MainState {
@@ -840,15 +1253,29 @@ class StudentFeeAmountError extends MainState {
 
 class GettingShopDetails extends MainState {}
 
+class GettingStudentProfile extends MainState {}
+
+class GettingAcademicProfile extends MainState {}
+
 class GettingProgressCard extends MainState {}
 
 class GettingStudentAttendance extends MainState {}
+
+class RefreshState extends MainState {}
+
+class RefreshPrvState extends MainState {}
 
 class GettingReadyPaymentLoading extends MainState {}
 
 class GettingAdminExmPublishDetails extends MainState {}
 
 class GettingClassList extends MainState {}
+
+class GettingStafffClassList extends MainState {}
+
+class GettingAdminnClassList extends MainState {}
+
+class GettingStafffClassSectionList extends MainState {}
 
 class GettingAdminDashboard extends MainState {}
 
@@ -870,6 +1297,18 @@ class StudentFeeListFailed extends MainState {
   final String? error;
 
   StudentFeeListFailed({this.error});
+}
+
+class StudentProflieListFailed extends MainState {
+  final String? error;
+
+  StudentProflieListFailed({this.error});
+}
+
+class AcademicProfileFailed extends MainState {
+  final String? error;
+
+  AcademicProfileFailed({this.error});
 }
 
 class ProgressCardFailed extends MainState {
@@ -900,6 +1339,24 @@ class ClassListFailed extends MainState {
   final String? error;
 
   ClassListFailed({this.error});
+}
+
+class ClassStaffFailed extends MainState {
+  final String? error;
+
+  ClassStaffFailed({this.error});
+}
+
+class ClassAdminFailed extends MainState {
+  final String? error;
+
+  ClassAdminFailed({this.error});
+}
+
+class ClassStaffSectionFailed extends MainState {
+  final String? error;
+
+  ClassStaffSectionFailed({this.error});
 }
 
 class AdminDashboardFailed extends MainState {
